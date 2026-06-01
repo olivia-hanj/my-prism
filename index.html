@@ -2,121 +2,348 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>琉璃鏡 ． 生命靈數完全版</title>
-    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琉璃鏡 ． 命理全整合系統</title>
+    <style>
+        :root { --bg: #0b0c10; --card: #1f2833; --gold: #c5a059; --text: #ffffff; --danger: #e74c3c; }
+        body { font-family: 'PingFang TC', sans-serif; background: var(--bg); color: var(--text); padding: 20px; display: flex; flex-direction: column; align-items: center; margin: 0; }
+        h1 { color: var(--gold); letter-spacing: 2px; margin-bottom: 5px; }
+        .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 20px; }
+        .container { width: 100%; max-width: 500px; background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); box-sizing: border-box; }
+        
+        .user-type-selector { display: flex; justify-content: space-around; margin-bottom: 20px; background: #0b0c10; padding: 5px; border-radius: 8px; }
+        .user-type-selector button { background: none; border: none; color: #888; padding: 10px; cursor: pointer; font-size: 1rem; width: 50%; transition: 0.3s; }
+        .user-type-selector button.active { background: var(--gold); color: #0b0c10; border-radius: 6px; font-weight: bold; }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; color: var(--gold); font-size: 0.9rem; }
+        input, select { width: 100%; padding: 12px; background: #0b0c10; border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 8px; color: white; font-size: 1rem; box-sizing: border-box; }
+        
+        .name-row, .date-row { display: flex; gap: 10px; align-items: center; }
+        .date-row input { text-align: center; }
+        .delete-btn { background: rgba(231, 76, 60, 0.15); border: 1px solid var(--danger); color: var(--danger); padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; display: none; }
+
+        .system-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px; }
+        .sys-btn { padding: 15px 5px; background: #151c24; border: 1px solid var(--gold); border-radius: 10px; color: var(--gold); font-size: 0.95rem; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .sys-btn:hover:not(.disabled) { background: var(--gold); color: #0b0c10; }
+        .sys-btn.disabled { background: #121212; border-color: #353535; color: #353535; cursor: not-allowed; }
+
+        #result-box { margin-top: 25px; padding: 20px; background: #151c24; border-left: 4px solid var(--gold); border-radius: 5px; display: none; line-height: 1.6; }
+        .res-title { color: #ffeb3b; font-weight: bold; display: block; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 5px; }
+        .res-content { color: #e0e0e0; font-size: 0.95rem; text-align: justify; }
+        
+        .line-badge { display: inline-block; background: rgba(197, 160, 89, 0.15); color: var(--gold); padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; margin: 3px; border: 1px solid rgba(197, 160, 89, 0.3); }
+        .high-freq { color: #2ecc71; font-weight: bold; }
+        .low-freq { color: #e74c3c; font-weight: bold; }
+    </style>
+</head>
 <body>
+
+    <h1>🔮 琉璃鏡</h1>
+    <div class="subtitle">The Prism ． 照見內心清澈的自己</div>
+
+    <div class="container">
+        <div class="user-type-selector">
+            <button id="mode-main" class="active">主要使用者</button>
+            <button id="mode-sub">探索親友/伴侶</button>
+        </div>
+
+        <div class="form-group">
+            <label>名字 / 暱稱</label>
+            <div class="name-row">
+                <input type="text" id="in-name" list="friends-data" placeholder="請手動輸入名字">
+                <datalist id="friends-data"></datalist>
+                <button id="btn-del" class="delete-btn">🗑️</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>西元國曆生日</label>
+            <div class="date-row">
+                <input type="tel" id="in-y" placeholder="YYYY" maxlength="4" style="flex:2">
+                <span>/</span>
+                <input type="tel" id="in-m" placeholder="MM" maxlength="2" style="flex:1">
+                <span>/</span>
+                <input type="tel" id="in-d" placeholder="DD" maxlength="2" style="flex:1">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>精確出生時刻 (24小時制，選填)</label>
+            <div class="date-row">
+                <input type="tel" id="in-hh" placeholder="時" maxlength="2">
+                <span>:</span>
+                <input type="tel" id="in-mm" placeholder="分" maxlength="2">
+            </div>
+        </div>
+
+        <div class="system-grid">
+            <button class="sys-btn" id="btn-num">🔮 生命靈數全解析</button>
+            <button class="sys-btn" id="btn-mbti">🧠 MBTI 靈魂人格</button>
+            <button class="sys-btn disabled" id="btn-astro">🌌 星座星盤</button>
+            <button class="sys-btn disabled" id="btn-bazi">🔥 生辰八字</button>
+        </div>
+
+        <div id="result-box"></div>
+    </div>
+
     <script>
-        // 核心資料庫：融合了 PDF 中的詳細解析
-        const numerologyDB = {
-            1: {
-                role: "開路先鋒",
-                traits: "自信、主觀、獨立、領導力強。",
-                low: "固執自我、愛面子、任性。",
-                chakra: "海底輪（紅色）- 生存與安全感。",
-                crystal: "紅石榴、黑曜石、赤鐵礦、黑碧璽、紅寶石。",
-                money: "適合開拓藍海市場，賺開疆闢土財。",
-                tip: "相信自己跟別人有良性互動的可能。"
+        // ----------------------------------------------------
+        // 1. 核心資料庫 (整合了所有水晶、脈輪與連線知識)
+        // ----------------------------------------------------
+        const numDB = {
+            1: { 
+                role: "開路先鋒", 
+                chakra: "海底輪 (紅色) - 掌管生存、安全感與行動力", 
+                crystal: "黑曜石、紅瑪瑙、茶晶、黑碧璽、石榴石、紅寶石等黑色或大紅色水晶。", 
+                crystal_effect: "消除負面情緒、提升氣血、增強決斷與領導能力、防小人與避邪。",
+                traits: "獨立、自信、主觀、具備強烈的驅動力與創造性。低階時易固執、愛面子、任性。"
             },
-            2: {
-                role: "協調專家",
-                traits: "分析力強、細心、耐心、重合作。",
-                low: "依賴、情緒化、反覆不定。",
-                chakra: "臍輪（橙色）- 掌管感覺與情緒。",
-                crystal: "紅玉髓、蛋白石、太陽石、琥珀、橙色珊瑚。",
-                money: "適合精緻小高單價商品，合作賺錢。",
-                tip: "學習真與假的判別，並在陰陽二元力量中取得平衡。"
+            2: { 
+                role: "協調專家", 
+                chakra: "臍輪 (橙色) - 掌管感受、情緒與生殖系統", 
+                crystal: "太陽石、琥珀、橙色方解石、紅膠花、阿魯沙金太陽等橙色水晶。", 
+                crystal_effect: "釋放焦慮、提高信心勇氣、招貴人、安撫自身情緒。",
+                traits: "分析力強、配合度高、重視細節與和諧。低階時易依賴、情緒化、反覆不定。"
             },
-            3: {
-                role: "創意開心果",
-                traits: "活潑、善表達、溝通力強、充滿活力。",
-                low: "任性、注意力不集中、沒耐性。",
-                chakra: "太陽神經叢（黃色）- 熱情與動力中心。",
-                crystal: "黃水晶、黃虎眼石、鈦金、橄欖石。",
-                money: "適合透過口才、美感或創意賺取興趣財。",
-                tip: "學習完整表達想法，並將新奇觀點落實於生活。"
+            3: { 
+                role: "創意開心果", 
+                chakra: "太陽神經叢 (黃色) - 掌管消化、熱情與人生動力", 
+                crystal: "黃水晶、鈦金、黃虎眼石、黃玉、黃蜜蠟等黃色水晶。", 
+                crystal_effect: "增強偏財運、帶來快樂幸福、平衡身心靈、幫助釋放壓力。",
+                traits: "活潑、溝通力強、充滿新變化與靈感。低階時易任性、注意力不集中、缺乏耐心。"
             },
-            4: {
-                role: "務實基石",
-                traits: "穩重、執行力佳、組織規劃力強。",
-                low: "猜忌心重、自我壓抑、墨守成規。",
-                chakra: "心輪（粉/綠色）- 慈悲與愛的所在地。",
-                crystal: "粉水晶、薔薇石、孔雀石、東菱玉、葡萄石。",
-                money: "善於儲蓄與不動產投資。",
-                tip: "學會打破安全界線，擺脫執著與過度保護自己。"
+            4: { 
+                role: "務實基石", 
+                chakra: "心輪 (粉色/綠色) - 掌管呼吸、慈悲與愛", 
+                crystal: "粉水晶、綠草莓、葡萄石、綠幽靈、孔雀石、東菱玉等粉色與綠色水晶。", 
+                crystal_effect: "舒緩緊張情緒、增加愛情運勢、吸收負能量、促進內心寧靜與財富。",
+                traits: "處事穩重、執行力佳、能鞏固安全感與秩序。低階時易無安全感、猜忌心重、自我壓抑。"
             },
-            5: {
-                role: "冒險風之子",
-                traits: "愛好自由、好奇心強、執行力與行銷力佳。",
-                low: "喜新厭舊、無責任感、放縱。",
-                chakra: "喉輪（藍色）- 溝通與表達中心。",
-                crystal: "藍寶石、青金石、海水藍寶、拉利瑪、藍晶石。",
-                money: "適合賺取興趣與專業知識財。",
-                tip: "開發內在神性，將自由意志落實在規律生活中。"
+            5: { 
+                role: "冒險風之子", 
+                chakra: "喉輪 (藍色) - 掌管表達、溝通與神經傳導", 
+                crystal: "海藍寶、青金石、藍玉髓、天河石、藍磷灰等藍色水晶。", 
+                crystal_effect: "提高智慧與表達能力、舒緩緊張、避免鑽牛角尖、防小人。",
+                traits: "愛好自由、冒險精神強、充滿好奇心。低階時易放縱、不安於室、逃避責任。"
             },
-            6: {
-                role: "守護天使",
-                traits: "體貼、包容、關愛、治療與照顧能力。",
-                low: "愛別人勝於愛自己、愛當烈士、吹毛求疵。",
-                chakra: "眉心輪（紫色）- 覺知與直覺中心。",
-                crystal: "紫水晶、紫瑩石、藍銅礦、青金石。",
-                money: "適合服務、諮商、人脈經營財。",
-                tip: "學習自利利他的平衡點，真愛是先誠實對待自己。"
+            6: { 
+                role: "守護天使", 
+                chakra: "眉心輪 (紫色) - 掌管覺知、直覺與第三眼", 
+                crystal: "紫水晶、紫瑩石、紫鋰輝、超七、紫玉髓等紫色水晶。", 
+                crystal_effect: "開智慧、激發靈感、減輕焦慮壓力、增進人際和諧與平靜。",
+                traits: "真愛與完美主義者、體貼包容、喜歡照顧他人。低階時易濫好人、吹毛求疵、委屈自己。"
             },
-            7: {
-                role: "真理偵探",
-                traits: "洞悉人性、直覺高、謹慎細心、追求真理。",
-                low: "懷疑心重、封閉自我、孤僻。",
-                chakra: "頂輪（白色）- 無限與靈性連結。",
-                crystal: "白水晶、鑽石、月光石、舒俱萊石。",
-                money: "容易有貴人運與衝動的投機財（如中獎）。",
-                tip: "培養覺醒心智，放下對真理的恐懼與懷疑。"
+            7: { 
+                role: "真理偵探", 
+                chakra: "頂輪 (乳白色) - 掌管大腦、無限與靈性", 
+                crystal: "白水晶、白色月光石、蛋白石、白瑪瑙、雪花幽靈等乳白水晶。", 
+                crystal_effect: "激發創造力與靈感、淨化磁場、安神定心、增加記憶力與直覺。",
+                traits: "洞悉人性、直覺性高、細心且具備真理探討力。低階時易懷疑、孤傲、自欺欺人。"
             },
-            8: {
-                role: "物質掌控者",
-                traits: "掌控力強、理財與財經天賦、內心強大。",
-                low: "追求權力與名利、自命清高、不切實際。",
-                chakra: "神之輪（人體之外）- 財富與權勢。",
-                crystal: "鑽石、白水晶。",
-                money: "適合創業、企業核心操盤，需學會誠實以待。",
-                tip: "誠實是成功的鑰匙，學會適時示弱與放鬆。"
+            8: { 
+                role: "物質掌控者", 
+                chakra: "神之輪 (透明無色) - 掌管財富、權勢與事業", 
+                crystal: "白水晶、鑽石、透石膏、黑髮晶等透明無色水晶。", 
+                crystal_effect: "提高判斷力、專注完成目標、提升事業運及財富、極強的淨化調頻能力。",
+                traits: "掌控性佳、理財力強、具備老闆命格。低階時易控制慾強、自命清高、不擇手段。"
             },
-            9: {
-                role: "大愛夢想家",
-                traits: "博愛、靈知力高、慈悲、利他主義。",
-                low: "常做白日夢、容易沉迷放縱、缺乏原則。",
-                chakra: "神之輪（人體之外）- 靈性與完美。",
-                crystal: "珍珠。",
-                money: "透過成就他人與豐富他人的智慧來賺錢。",
-                tip: "腳踏實地，學會付出但不求回報的平衡。"
+            9: { 
+                role: "大愛夢想家", 
+                chakra: "神之輪 (珍珠白) - 掌管大愛、智慧與完美", 
+                crystal: "珍珠。", 
+                crystal_effect: "反射與淨化能量、幫助記憶與考運、放大能量與面對開放的心境。",
+                traits: "夢想家、修行者、慈悲憐憫、利他主義者。低階時易活在幻想、做白日夢、缺乏原則。"
             }
         };
 
-        // 計算邏輯：直接讀取年月日加總
-        function runNumerology() {
+        // 連線資料庫
+        const linesDB = [
+            { nums: [1,2,3], name: "123 體能主線 / 藝術獨立線", high: "有藝術天分、對美的感知能力強、具文藝氣息。", low: "容易情緒化、敏感、神經質、任性。" },
+            { nums: [4,5,6], name: "456 知能主線 / 組織治療線", high: "做事明朗、條理分明、邏輯性與組織能力強、可靠踏實。", low: "苛求、挑剔、過於拘泥細節的完美主義。" },
+            { nums: [7,8,9], name: "789 心靈主線 / 權力貴人線", high: "具備個人魅力、靈性特質、有計畫與企圖心，易得貴人幫助成就事業。", low: "依賴性強、惰性、投機，過度依賴他人而不想主動處理。" },
+            { nums: [1,4,7], name: "147 物質主線 / 務實安全線", high: "務實、實際、懂生存、擅賺錢、正財運佳。", low: "貪財、視錢如命、小氣，易變守財奴。" },
+            { nums: [2,5,8], name: "258 情緒主線 / 感情表達線", high: "活潑、善交際公關、情感真誠、溝通能力強。", low: "想說就說、口無遮攔、禍從口出、恣意表達喜惡傷人。" },
+            { nums: [3,6,9], name: "369 創意主線 / 智慧神性線", high: "聰明伶俐、具靈性與悟性、神性思維、表達力佳。", low: "空想、不切實際、思考多於行動、作夢線。" },
+            { nums: [1,5,9], name: "159 成效主線 / 事業狂熱線", high: "堅持與熱情、全心全力投入事業、創造與持久力強。", low: "工作狂、偏執、只顧事業忽略健康或家庭。" },
+            { nums: [3,5,7], name: "357 溝通主線 / 人緣魅力線", high: "人緣佳、深受喜愛、敏捷思維與幽默感、具備個人舞台魅力。", low: "愛爭寵、自我膨脹、耍大牌、利用名氣優勢。" },
+            { nums: [2,4], name: "24 靈巧變通線", high: "應變能力強、舉一反三、見機行事、聰明精明。", low: "奸詐、欺騙、善變、不良於行。" },
+            { nums: [2,6], name: "26 公平待人和平線", high: "同理心、親和力、助人為樂、公平正義。", low: "不善拒絕、對別人太好連累自己、內心不平衡。" },
+            { nums: [6,8], name: "68 親切誠實線", high: "誠實、親切和藹、掏心掏肺，適合服務業。", low: "虛偽、不誠實、過度壓抑內心感受以討好他人。" },
+            { nums: [4,8], name: "48 穩定勤勞模範線", high: "努力勤奮、執行力強、做事穩固高效率。", low: "焦慮不安、太過在乎成功與金錢，給自己極大壓力。" }
+        ];
+
+        // ----------------------------------------------------
+        // 2. 系統架構與狀態
+        // ----------------------------------------------------
+        let db = { main: {}, subList: {} };
+        let curMode = 'main';
+        let curSubName = '';
+
+        function saveToLocal() { localStorage.setItem('prism_v2', JSON.stringify(db)); }
+
+        function updateUI() {
+            const data = (curMode === 'main') ? db.main : (db.subList[curSubName] || {});
+            document.getElementById('in-name').value = data.name || "";
+            document.getElementById('in-y').value = data.year || "";
+            document.getElementById('in-m').value = data.month || "";
+            document.getElementById('in-d').value = data.day || "";
+            document.getElementById('in-hh').value = data.hour || "";
+            document.getElementById('in-mm').value = data.minute || "";
+            document.getElementById('btn-del').style.display = (curMode === 'sub' && curSubName) ? 'block' : 'none';
+            checkReady();
+        }
+
+        function checkReady() {
+            const y = document.getElementById('in-y').value;
+            const hh = document.getElementById('in-hh').value;
+            const ready = (y.length === 4 && hh !== "");
+            ['btn-astro', 'btn-bazi'].forEach(id => {
+                const b = document.getElementById(id);
+                if(ready) b.classList.remove('disabled'); else b.classList.add('disabled');
+            });
+        }
+
+        function showResult(htmlContent) {
+            const box = document.getElementById('result-box');
+            box.style.display = 'block';
+            box.innerHTML = htmlContent;
+            box.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ----------------------------------------------------
+        // 3. 命理算法核心
+        // ----------------------------------------------------
+        function calcLifeNum() {
             const y = document.getElementById('in-y').value;
             const m = document.getElementById('in-m').value;
             const d = document.getElementById('in-d').value;
-            if(!y || !m || !d) { alert("請先填寫生日"); return; }
+            const name = document.getElementById('in-name').value || "你";
+            if(!y || !m || !d) { alert("請填寫完整的出生年月日"); return; }
             
+            // 計算主命數
             let sum = (y + m + d).split('').reduce((a, b) => a + parseInt(b), 0);
-            while (sum > 9) { 
-                sum = sum.toString().split('').reduce((a, b) => a + parseInt(b), 0); 
-            }
+            while (sum > 9) sum = sum.toString().split('').reduce((a, b) => a + parseInt(b), 0);
 
-            const res = numerologyDB[sum];
-            const name = document.getElementById('username').value;
-            
-            document.getElementById('result-box').style.display = 'block';
-            document.getElementById('result-box').innerHTML = `
-                <h3>🔮 ${name} 的生命靈數報告</h3>
-                <span class="res-title">宇宙定錨：你是 ${sum} 號人 ( ${res.role} )</span>
-                <p>${res.traits}</p>
-                <span class="res-title">核心天賦</span><p>${res.talent}</p>
-                <span class="res-title">水晶保養建議</span><p>${res.crystal}</p>
-                <span class="res-title">人生課題</span><p>${res.tip}</p>
+            // 計算連線 (九宮格天賦)
+            const allDigits = Array.from(new Set((y + m + d).split('').map(Number)));
+            let linesHtml = "";
+            let hasLine = false;
+
+            linesDB.forEach(line => {
+                const isPresent = line.nums.every(num => allDigits.includes(num));
+                if(isPresent) {
+                    hasLine = true;
+                    linesHtml += `
+                        <div style="margin-bottom: 15px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;">
+                            <span class="line-badge">🔗 ${line.name}</span><br>
+                            <span class="res-content"><span class="high-freq">【高頻展現】：</span>${line.high}</span><br>
+                            <span class="res-content"><span class="low-freq">【低頻盲點】：</span>${line.low}</span>
+                        </div>
+                    `;
+                }
+            });
+            if(!hasLine) linesHtml = "<p class='res-content'>你的命盤呈現高度集中的特質，可塑性極高，對於擅長的領域有著無比清晰的認知。</p>";
+
+            const res = numDB[sum];
+            const html = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: #ffeb3b; margin:0;">${name} 的生命靈數全解析</h2>
+                    <span style="color: #aaa; font-size: 0.9rem;">主命數 ${sum} 號人 ． ${res.role}</span>
+                </div>
+
+                <span class="res-title">🏰 性格與靈魂特質</span>
+                <div class="res-content">${res.traits}</div>
+
+                <span class="res-title">✨ 人體七脈輪與對應能量</span>
+                <div class="res-content"><b>主導脈輪：</b>${res.chakra}</div>
+
+                <span class="res-title">💎 專屬幸運水晶開運法</span>
+                <div class="res-content"><b>推薦水晶：</b>${res.crystal}<br><b>共振功效：</b>${res.crystal_effect}</div>
+
+                <span class="res-title">🕸️ 你的九宮格天賦連線解析</span>
+                <div class="res-content" style="margin-top:10px;">${linesHtml}</div>
             `;
+            showResult(html);
         }
-        // 將此函數掛載到你的按鈕上即可！
+
+        // ----------------------------------------------------
+        // 4. 事件綁定 (工業級保險絲)
+        // ----------------------------------------------------
+        document.addEventListener("DOMContentLoaded", function() {
+            localStorage.removeItem('prism_data'); // 清除舊版衝突
+            const saved = localStorage.getItem('prism_v2');
+            if(saved) db = JSON.parse(saved);
+
+            // 模式切換
+            document.getElementById('mode-main').addEventListener('click', () => {
+                curMode = 'main';
+                document.getElementById('mode-main').classList.add('active');
+                document.getElementById('mode-sub').classList.remove('active');
+                updateUI();
+            });
+
+            document.getElementById('mode-sub').addEventListener('click', () => {
+                curMode = 'sub';
+                document.getElementById('mode-sub').classList.add('active');
+                document.getElementById('mode-main').classList.remove('active');
+                curSubName = ''; updateUI();
+            });
+
+            // 名字輸入
+            document.getElementById('in-name').addEventListener('change', (e) => {
+                const val = e.target.value.trim();
+                if(!val) return;
+                if(curMode === 'main') { db.main.name = val; }
+                else {
+                    curSubName = val;
+                    if(!db.subList[val]) db.subList[val] = { name: val };
+                }
+                saveToLocal(); updateUI();
+            });
+
+            // 生日輸入連動
+            const inputs = ['in-y', 'in-m', 'in-d', 'in-hh', 'in-mm'];
+            inputs.forEach((id, idx) => {
+                document.getElementById(id).addEventListener('input', (e) => {
+                    if(e.target.value.length >= e.target.maxLength && idx < inputs.length-1) {
+                        document.getElementById(inputs[idx+1]).focus();
+                    }
+                    const data = (curMode === 'main') ? db.main : db.subList[curSubName];
+                    if(data) {
+                        const keys = ['year', 'month', 'day', 'hour', 'minute'];
+                        data[keys[idx]] = e.target.value;
+                        saveToLocal();
+                    }
+                    checkReady();
+                });
+            });
+
+            // 刪除按鈕
+            document.getElementById('btn-del').addEventListener('click', () => {
+                if(confirm(`確定刪除 ${curSubName} 的資料？`)) {
+                    delete db.subList[curSubName];
+                    curSubName = ''; saveToLocal(); updateUI();
+                }
+            });
+
+            // 功能按鈕
+            document.getElementById('btn-num').addEventListener('click', calcLifeNum);
+            
+            document.getElementById('btn-mbti').addEventListener('click', () => {
+                showResult(`
+                    <h3 style="color:#ffeb3b; text-align:center;">🧠 MBTI 靈魂人格</h3>
+                    <div class="res-content">MBTI 模組結構已準備完畢，即將載入 64 型深層題庫。</div>
+                `);
+            });
+
+            // 初始載入
+            updateUI();
+            const dl = document.getElementById('friends-data');
+            Object.keys(db.subList).forEach(n => {
+                const o = document.createElement('option'); o.value = n; dl.appendChild(o);
+            });
+        });
     </script>
 </body>
 </html>
