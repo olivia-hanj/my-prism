@@ -53,14 +53,12 @@
     <h1>🔮 琉璃鏡</h1>
     <div class="subtitle">The Prism ． 照見內心清澈的自己</div>
 
-    <!-- 🃏 每日塔羅抽取區 -->
     <div class="tarot-card">
         <div class="tarot-title">🃏 每日塔羅指引 (無須輸入資料)</div>
         <button class="sys-btn" id="btn-tarot" style="width: 80%; padding: 12px; margin: 0 auto;">翻開今日卡牌</button>
         <div id="tarot-result" style="display: none; margin-top: 15px; border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 15px;"></div>
     </div>
 
-    <!-- 🌈 專屬彩虹卡展示區 -->
     <div class="rainbow-card" id="rainbow-card-bg">
         <div class="rainbow-title">✨ 宇宙今日低語 ✨</div>
         <div id="rainbow-quote" class="rainbow-text">正在為你連結宇宙頻率...</div>
@@ -68,30 +66,25 @@
 
     <div class="container">
         <div class="user-type-selector">
-            <button id="mode-main" class="active">主要使用者</button>
-            <button id="mode-sub">探索親友/伴侶</button>
+            <button id="mode-main" class="active">遇見自己</button>
+            <button id="mode-sub">探索親友</button>
         </div>
 
-        <!-- 👑 全新升級：姓名與親友選單區塊 -->
         <div class="form-group">
             <label id="name-label">名字 / 暱稱</label>
             
-            <!-- 親友專屬下拉選單 (預設隱藏) -->
             <div class="name-row" id="sub-select-row" style="display: none; margin-bottom: 10px;">
-                <select id="sub-user-select" style="flex: 1;">
-                    <!-- 選項將由 JS 動態生成 -->
-                </select>
+                <select id="sub-user-select" style="flex: 1;"></select>
                 <button id="btn-del" class="delete-btn" title="刪除此紀錄">🗑️</button>
             </div>
 
-            <!-- 文字輸入框 (主使用者，或新增親友時顯示) -->
             <div class="name-row" id="name-input-row">
-                <input type="text" id="in-name" placeholder="請輸入名字，系統將自動為您記憶">
+                <input type="text" id="in-name" placeholder="請輸入名字">
             </div>
         </div>
 
         <div class="form-group">
-            <label>西元國曆生日 (填寫即自動記憶)</label>
+            <label>西元國曆生日</label>
             <div class="date-row">
                 <input type="tel" id="in-y" placeholder="YYYY" maxlength="4" style="flex:2">
                 <span>/</span>
@@ -229,16 +222,14 @@
         ];
 
         // ==========================================
-        // 系統架構與狀態 (v4 升級記憶體)
+        // 系統架構與狀態
         // ==========================================
         let db = { main: { name: "", year: "", month: "", day: "", hour: "", minute: "", mbti: "" }, subList: {} };
         let curMode = 'main';
-        let curSubName = ''; // 在次要模式中，目前選取的親友名稱
+        let curSubName = ''; 
 
-        // 儲存資料
         function saveToLocal() { localStorage.setItem('prism_v4', JSON.stringify(db)); }
 
-        // 重新繪製親友下拉選單
         function renderSubDropdown() {
             const select = document.getElementById('sub-user-select');
             select.innerHTML = '<option value="">-- 選擇已儲存的親友 --</option><option value="_NEW_" style="color:#c5a059; font-weight:bold;">+ 新增親友</option>';
@@ -251,7 +242,6 @@
             select.value = curSubName || "";
         }
 
-        // 更新介面
         function updateUI() {
             if (curMode === 'main') {
                 document.getElementById('name-label').innerText = "名字 / 暱稱";
@@ -314,7 +304,6 @@
         // 核心功能區
         // ==========================================
         
-        // 抽取塔羅
         function drawTarot() {
             const card = tarotDB[Math.floor(Math.random() * tarotDB.length)];
             document.getElementById('tarot-result').style.display = 'block';
@@ -324,7 +313,6 @@
             `;
         }
 
-        // 綜合大融合解析
         function calcFusionAll() {
             const name = (curMode === 'main') ? (document.getElementById('in-name').value || "你") : (curSubName || "親友");
             const mbti = (curMode === 'main') ? (db.main.mbti || "未測驗") : (db.subList[curSubName]?.mbti || "未測驗");
@@ -357,7 +345,6 @@
             showResult(html);
         }
 
-        // 生命靈數解析
         function calcLifeNum() {
             const y = document.getElementById('in-y').value;
             const m = document.getElementById('in-m').value;
@@ -406,7 +393,6 @@
             showResult(html);
         }
 
-        // 系統佔位符
         function showPlaceholder(title) {
             showResult(`
                 <h3 style="color:#ffeb3b; text-align:center;">${title}</h3>
@@ -415,16 +401,14 @@
         }
 
         // ==========================================
-        // 頁面載入與事件綁定 (增強型靜默記憶庫)
+        // 頁面載入與事件綁定
         // ==========================================
         window.onload = function() {
-            // 🌈 彩虹卡隨機抽取
             const randIdx = Math.floor(Math.random() * rainbowQuotes.length);
             const quoteData = rainbowQuotes[randIdx];
             document.getElementById('rainbow-quote').innerText = `「${quoteData.text}」`;
             document.getElementById('rainbow-card-bg').style.background = `linear-gradient(135deg, #1f2833 10%, ${quoteData.color}99)`;
 
-            // 讀取 v4 記憶體
             const saved = localStorage.getItem('prism_v4');
             if(saved) {
                 db = JSON.parse(saved);
@@ -432,10 +416,8 @@
                 if(!db.subList) db.subList = {};
             }
 
-            // 塔羅牌綁定
             document.getElementById('btn-tarot').addEventListener('click', drawTarot);
 
-            // 模式切換
             document.getElementById('mode-main').addEventListener('click', () => {
                 curMode = 'main';
                 document.getElementById('mode-main').classList.add('active');
@@ -453,7 +435,6 @@
                 updateUI();
             });
 
-            // 親友下拉選單切換
             document.getElementById('sub-user-select').addEventListener('change', (e) => {
                 const val = e.target.value;
                 if(val === "_NEW_") {
@@ -465,7 +446,6 @@
                 updateUI();
             });
 
-            // 👑 名字即時存檔 (主使用者或新增親友)
             document.getElementById('in-name').addEventListener('input', (e) => {
                 const val = e.target.value.trim();
                 if (curMode === 'main') {
@@ -473,27 +453,24 @@
                     saveToLocal();
                 }
             });
+            
             document.getElementById('in-name').addEventListener('change', (e) => {
                 const val = e.target.value.trim();
                 if (curMode === 'sub' && val !== "") {
-                    // 建立新親友檔案
                     curSubName = val;
                     if(!db.subList[val]) db.subList[val] = { name: val, year:"", month:"", day:"", hour:"", minute:"" };
                     saveToLocal();
-                    updateUI(); // 重新渲染選單並選中該親友
+                    updateUI(); 
                 }
             });
 
-            // 👑 日期即時存檔 (無縫覆寫最新記憶)
             const inputs = ['in-y', 'in-m', 'in-d', 'in-hh', 'in-mm'];
             inputs.forEach((id, idx) => {
                 document.getElementById(id).addEventListener('input', (e) => {
                     const val = e.target.value;
-                    // 自動跳格
                     if(val.length >= e.target.maxLength && idx < inputs.length-1) {
                         document.getElementById(inputs[idx+1]).focus();
                     }
-                    // 靜默存檔
                     if (curMode === 'main') {
                         const keys = ['year', 'month', 'day', 'hour', 'minute'];
                         db.main[keys[idx]] = val;
@@ -507,7 +484,6 @@
                 });
             });
 
-            // 刪除親友檔案
             document.getElementById('btn-del').addEventListener('click', () => {
                 if(curSubName && confirm(`確定刪除 ${curSubName} 的專屬資料嗎？`)) {
                     delete db.subList[curSubName];
@@ -518,7 +494,6 @@
                 }
             });
 
-            // 核心解析按鈕
             document.getElementById('btn-num').addEventListener('click', calcLifeNum);
             document.getElementById('btn-fusion').addEventListener('click', calcFusionAll);
             document.getElementById('btn-mbti').addEventListener('click', () => showPlaceholder("🧠 MBTI 靈魂人格"));
@@ -526,10 +501,8 @@
             document.getElementById('btn-bazi').addEventListener('click', () => showPlaceholder("🔥 生辰八字"));
             document.getElementById('btn-ziwei').addEventListener('click', () => showPlaceholder("👑 紫微斗數"));
 
-            // 初次載入畫面
             updateUI();
         };
     </script>
 </body>
-</html>
 </html>
