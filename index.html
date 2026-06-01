@@ -2,334 +2,121 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>琉璃鏡 ． The Prism</title>
-    <style>
-        :root {
-            --bg-color: #0b0c10;
-            --card-bg: #1f2833;
-            --text-color: #c5a059; /* 復古神祕金 */
-            --text-light: #ffffff;
-            --disabled-color: #353535;
-            --accent-color: #45f3ff;
-            --fusion-color: #9b59b6;
-            --danger-color: #e74c3c;
-        }
-
-        body {
-            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-light);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h1 { color: var(--text-color); text-align: center; font-size: 2rem; letter-spacing: 3px; margin-bottom: 5px; }
-        .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
-
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            box-sizing: border-box;
-        }
-
-        .user-type-selector {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-            background: #0b0c10; padding: 5px; border-radius: 8px;
-        }
-
-        .user-type-selector button {
-            background: none; border: none; color: #888; padding: 10px; cursor: pointer; font-size: 1rem; width: 50%; transition: 0.3s;
-        }
-
-        .user-type-selector button.active {
-            background: var(--text-color); color: #0b0c10; border-radius: 6px; font-weight: bold;
-        }
-
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 8px; color: var(--text-color); font-size: 0.9rem; }
-        
-        input, select {
-            width: 100%; padding: 12px; background: #0b0c10; border: 1px solid rgba(197, 160, 89, 0.2);
-            border-radius: 8px; color: white; font-size: 1rem; box-sizing: border-box;
-        }
-
-        .name-row { display: flex; gap: 10px; }
-        .delete-btn {
-            background: rgba(231, 76, 60, 0.15); border: 1px solid var(--danger-color); color: var(--danger-color);
-            padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; display: none;
-        }
-
-        .date-row { display: flex; gap: 10px; align-items: center; }
-        .date-row input { text-align: center; }
-
-        .system-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px;
-        }
-
-        .sys-btn {
-            padding: 15px 5px; background: #151c24; border: 1px solid var(--text-color);
-            border-radius: 10px; color: var(--text-color); font-size: 0.9rem; cursor: pointer;
-            font-weight: bold; transition: 0.2s;
-        }
-
-        .sys-btn:hover:not(.disabled) { background: var(--text-color); color: #0b0c10; }
-        .sys-btn.disabled { background: #121212; border-color: var(--disabled-color); color: var(--disabled-color); cursor: not-allowed; }
-
-        .fusion-btn { grid-column: span 2; background: linear-gradient(135deg, #151c24, #2c1a3a); border-color: var(--fusion-color); color: #e2b3ff; }
-
-        /* 結果區 */
-        #result-box {
-            margin-top: 25px; padding: 20px; background: #151c24; border-left: 4px solid var(--text-color);
-            border-radius: 5px; display: none; line-height: 1.6; width: 100%; max-width: 500px;
-        }
-        .res-title { color: #ffeb3b; font-weight: bold; display: block; margin-top: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        
-        /* 測驗區 */
-        #quiz-container {
-            margin-top: 25px; padding: 20px; background: #151c24; border: 2px dashed var(--text-color); border-radius: 10px; display: none; width: 100%; max-width: 500px;
-        }
-        .quiz-q { font-size: 1rem; font-weight: bold; color: #ffeb3b; margin-bottom: 15px; }
-        .quiz-opt {
-            width: 100%; padding: 12px; background: #0b0c10; border: 1px solid rgba(255,255,255,0.1);
-            color: white; border-radius: 8px; text-align: left; margin-bottom: 10px; cursor: pointer;
-        }
-
-        .astro-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.8rem; }
-        .astro-table td { padding: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .astro-table tr td:first-child { font-weight: bold; color: var(--text-color); width: 40%; }
-    </style>
-</head>
+    <title>琉璃鏡 ． 生命靈數完全版</title>
+    </head>
 <body>
-
-    <h1>🔮 琉璃鏡</h1>
-    <div class="subtitle">The Prism ． 照見內心清澈的自己</div>
-
-    <div class="container">
-        <div class="user-type-selector">
-            <button id="mode-main" class="active">主要使用者</button>
-            <button id="mode-sub">探索親友/伴侶</button>
-        </div>
-
-        <div class="form-group">
-            <label>名字 / 暱稱</label>
-            <div class="name-row">
-                <input type="text" id="in-name" list="friends-data" placeholder="請手動輸入名字">
-                <datalist id="friends-data"></datalist>
-                <button id="btn-del" class="delete-btn">🗑️</button>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>西元國曆生日</label>
-            <div class="date-row">
-                <input type="tel" id="in-y" placeholder="YYYY" maxlength="4" style="flex:2">
-                <span>/</span>
-                <input type="tel" id="in-m" placeholder="MM" maxlength="2" style="flex:1">
-                <span>/</span>
-                <input type="tel" id="in-d" placeholder="DD" maxlength="2" style="flex:1">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>精確出生時刻 (24小時制)</label>
-            <div class="date-row">
-                <input type="tel" id="in-hh" placeholder="時" maxlength="2">
-                <span>:</span>
-                <input type="tel" id="in-mm" placeholder="分" maxlength="2">
-            </div>
-        </div>
-
-        <div class="system-grid">
-            <button class="sys-btn" id="btn-num">🔮 生命靈數</button>
-            <button class="sys-btn" id="btn-mbti">🧠 MBTI 人格</button>
-            <button class="sys-btn disabled" id="btn-astro">🌌 星座星盤</button>
-            <button class="sys-btn disabled" id="btn-bazi">🔥 生辰八字</button>
-            <button class="sys-btn disabled" id="btn-ziwei">👑 紫微斗數</button>
-            <button class="sys-btn fusion-btn disabled" id="btn-fusion">✨ 靈魂大融合全剖析</button>
-        </div>
-
-        <div id="quiz-container">
-            <div id="quiz-info" style="color:var(--text-color); font-size:0.8rem; margin-bottom:5px"></div>
-            <div class="quiz-q" id="quiz-question">載入中...</div>
-            <div id="quiz-options"></div>
-        </div>
-
-        <div id="result-box"></div>
-    </div>
-
     <script>
-        // --- 1. 核心資料庫與初始化 ---
-        let db = { main: {}, subList: {} };
-        let curMode = 'main';
-        let curSubName = '';
+        // 核心資料庫：融合了 PDF 中的詳細解析
+        const numerologyDB = {
+            1: {
+                role: "開路先鋒",
+                traits: "自信、主觀、獨立、領導力強。",
+                low: "固執自我、愛面子、任性。",
+                chakra: "海底輪（紅色）- 生存與安全感。",
+                crystal: "紅石榴、黑曜石、赤鐵礦、黑碧璽、紅寶石。",
+                money: "適合開拓藍海市場，賺開疆闢土財。",
+                tip: "相信自己跟別人有良性互動的可能。"
+            },
+            2: {
+                role: "協調專家",
+                traits: "分析力強、細心、耐心、重合作。",
+                low: "依賴、情緒化、反覆不定。",
+                chakra: "臍輪（橙色）- 掌管感覺與情緒。",
+                crystal: "紅玉髓、蛋白石、太陽石、琥珀、橙色珊瑚。",
+                money: "適合精緻小高單價商品，合作賺錢。",
+                tip: "學習真與假的判別，並在陰陽二元力量中取得平衡。"
+            },
+            3: {
+                role: "創意開心果",
+                traits: "活潑、善表達、溝通力強、充滿活力。",
+                low: "任性、注意力不集中、沒耐性。",
+                chakra: "太陽神經叢（黃色）- 熱情與動力中心。",
+                crystal: "黃水晶、黃虎眼石、鈦金、橄欖石。",
+                money: "適合透過口才、美感或創意賺取興趣財。",
+                tip: "學習完整表達想法，並將新奇觀點落實於生活。"
+            },
+            4: {
+                role: "務實基石",
+                traits: "穩重、執行力佳、組織規劃力強。",
+                low: "猜忌心重、自我壓抑、墨守成規。",
+                chakra: "心輪（粉/綠色）- 慈悲與愛的所在地。",
+                crystal: "粉水晶、薔薇石、孔雀石、東菱玉、葡萄石。",
+                money: "善於儲蓄與不動產投資。",
+                tip: "學會打破安全界線，擺脫執著與過度保護自己。"
+            },
+            5: {
+                role: "冒險風之子",
+                traits: "愛好自由、好奇心強、執行力與行銷力佳。",
+                low: "喜新厭舊、無責任感、放縱。",
+                chakra: "喉輪（藍色）- 溝通與表達中心。",
+                crystal: "藍寶石、青金石、海水藍寶、拉利瑪、藍晶石。",
+                money: "適合賺取興趣與專業知識財。",
+                tip: "開發內在神性，將自由意志落實在規律生活中。"
+            },
+            6: {
+                role: "守護天使",
+                traits: "體貼、包容、關愛、治療與照顧能力。",
+                low: "愛別人勝於愛自己、愛當烈士、吹毛求疵。",
+                chakra: "眉心輪（紫色）- 覺知與直覺中心。",
+                crystal: "紫水晶、紫瑩石、藍銅礦、青金石。",
+                money: "適合服務、諮商、人脈經營財。",
+                tip: "學習自利利他的平衡點，真愛是先誠實對待自己。"
+            },
+            7: {
+                role: "真理偵探",
+                traits: "洞悉人性、直覺高、謹慎細心、追求真理。",
+                low: "懷疑心重、封閉自我、孤僻。",
+                chakra: "頂輪（白色）- 無限與靈性連結。",
+                crystal: "白水晶、鑽石、月光石、舒俱萊石。",
+                money: "容易有貴人運與衝動的投機財（如中獎）。",
+                tip: "培養覺醒心智，放下對真理的恐懼與懷疑。"
+            },
+            8: {
+                role: "物質掌控者",
+                traits: "掌控力強、理財與財經天賦、內心強大。",
+                low: "追求權力與名利、自命清高、不切實際。",
+                chakra: "神之輪（人體之外）- 財富與權勢。",
+                crystal: "鑽石、白水晶。",
+                money: "適合創業、企業核心操盤，需學會誠實以待。",
+                tip: "誠實是成功的鑰匙，學會適時示弱與放鬆。"
+            },
+            9: {
+                role: "大愛夢想家",
+                traits: "博愛、靈知力高、慈悲、利他主義。",
+                low: "常做白日夢、容易沉迷放縱、缺乏原則。",
+                chakra: "神之輪（人體之外）- 靈性與完美。",
+                crystal: "珍珠。",
+                money: "透過成就他人與豐富他人的智慧來賺錢。",
+                tip: "腳踏實地，學會付出但不求回報的平衡。"
+            }
+        };
 
-        const mbtiPoolA = [
-            { d: "EI", q: "忙碌了一周後，你如何有效恢復精力？", a: "和朋友聚會大笑 (E)", b: "獨自在房間享受安靜 (I)" },
-            { d: "SN", q: "面對未來計畫，你更習慣依賴？", a: "過往經驗與實際資源 (S)", b: "內心直覺與無限想像 (N)" },
-            { d: "TF", q: "朋友遇到挫折向你傾訴，你第一反應是？", a: "幫他分析邏輯找出解決方法 (T)", b: "先承接他的情緒給予擁抱 (F)" },
-            { d: "JP", q: "準備長途旅行時，你的風格是？", a: "排好詳細時間清單 (J)", b: "隨遇而安享受驚喜 (P)" }
-        ]; // 為求代碼簡潔，此處僅展示核心維度，實務中可自行複製增加題數
-
-        // --- 2. 核心功能函數 ---
-        
-        function saveToLocal() { localStorage.setItem('prism_data', JSON.stringify(db)); }
-
-        function updateUI() {
-            const data = (curMode === 'main') ? db.main : (db.subList[curSubName] || {});
-            document.getElementById('in-name').value = data.name || "";
-            document.getElementById('in-y').value = data.year || "";
-            document.getElementById('in-m').value = data.month || "";
-            document.getElementById('in-d').value = data.day || "";
-            document.getElementById('in-hh').value = data.hour || "";
-            document.getElementById('in-mm').value = data.minute || "";
-            document.getElementById('btn-del').style.display = (curMode === 'sub' && curSubName) ? 'block' : 'none';
-            checkReady();
-        }
-
-        function checkReady() {
-            const y = document.getElementById('in-y').value;
-            const hh = document.getElementById('in-hh').value;
-            const ready = (y.length === 4 && hh !== "");
-            const btns = ['btn-astro', 'btn-bazi', 'btn-ziwei', 'btn-fusion'];
-            btns.forEach(id => {
-                const b = document.getElementById(id);
-                if(ready) b.classList.remove('disabled'); else b.classList.add('disabled');
-            });
-        }
-
-        // --- 3. 命理算法 ---
-
-        function calcLifeNum() {
+        // 計算邏輯：直接讀取年月日加總
+        function runNumerology() {
             const y = document.getElementById('in-y').value;
             const m = document.getElementById('in-m').value;
             const d = document.getElementById('in-d').value;
-            if(!y || !m || !d) { alert("請填寫生日"); return; }
+            if(!y || !m || !d) { alert("請先填寫生日"); return; }
             
             let sum = (y + m + d).split('').reduce((a, b) => a + parseInt(b), 0);
-            while (sum > 9) { sum = sum.toString().split('').reduce((a, b) => a + parseInt(b), 0); }
-
-            const desc = {
-                1: "開路先鋒", 2: "協調專家", 3: "創意開心果", 4: "務實基石", 
-                5: "冒險風之子", 6: "守護天使", 7: "真理偵探", 8: "物質掌控者", 9: "大愛夢想家"
-            };
-
-            showResult(`🔮 生命靈數報告`, `你是 ${sum} 號人 ． ${desc[sum] || "靈性探索者"}<br>1993/04/18 等生日已通過精準校值測試。`);
-        }
-
-        function calcAstro() {
-            const hh = parseInt(document.getElementById('in-hh').value);
-            const m = parseInt(document.getElementById('in-m').value);
-            const d = parseInt(document.getElementById('in-d').value);
-            
-            const signs = ["摩羯", "水瓶", "雙魚", "牡羊", "金牛", "雙子", "巨蟹", "獅子", "處女", "天秤", "天蠍", "射手"];
-            const houseNames = ["命宮/上升", "財帛", "兄弟", "田宅", "子女", "奴僕", "夫妻", "疾厄", "遷移", "官祿", "福德", "玄祕"];
-            
-            // 簡化等宮計算：基於小時偏移
-            let ascIdx = (Math.floor(hh / 2) + m + 6) % 12;
-            let rows = "";
-            for(let i=0; i<12; i++) {
-                rows += `<tr><td>第${i+1}宮 ${houseNames[i]}</td><td>${signs[(ascIdx + i) % 12]}座</td></tr>`;
+            while (sum > 9) { 
+                sum = sum.toString().split('').reduce((a, b) => a + parseInt(b), 0); 
             }
 
-            showResult(`🌌 西洋星盤 12宮位全景`, `<table class="astro-table">${rows}</table><br>透過出生證明精確時刻，已定錨你的地平線社交面具。`);
-        }
-
-        function showResult(title, content) {
-            const box = document.getElementById('result-box');
-            box.style.display = 'block';
-            box.innerHTML = `<h3>${title}</h3><div style="color:#e0e0e0">${content}</div>`;
-            box.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // --- 4. 事件監聽 (保險絲設計) ---
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const saved = localStorage.getItem('prism_data');
-            if(saved) db = JSON.parse(saved);
-
-            // 使用者切換
-            document.getElementById('mode-main').addEventListener('click', () => {
-                curMode = 'main';
-                document.getElementById('mode-main').classList.add('active');
-                document.getElementById('mode-sub').classList.remove('active');
-                updateUI();
-            });
-
-            document.getElementById('mode-sub').addEventListener('click', () => {
-                curMode = 'sub';
-                document.getElementById('mode-sub').classList.add('active');
-                document.getElementById('mode-main').classList.remove('active');
-                curSubName = ''; 
-                updateUI();
-            });
-
-            // 名字輸入記憶
-            document.getElementById('in-name').addEventListener('change', (e) => {
-                const val = e.target.value.trim();
-                if(!val) return;
-                if(curMode === 'main') { db.main.name = val; }
-                else {
-                    curSubName = val;
-                    if(!db.subList[val]) db.subList[val] = { name: val };
-                }
-                saveToLocal();
-                updateUI();
-            });
-
-            // 生日自動跳格
-            const inputs = ['in-y', 'in-m', 'in-d', 'in-hh', 'in-mm'];
-            inputs.forEach((id, idx) => {
-                document.getElementById(id).addEventListener('input', (e) => {
-                    if(e.target.value.length >= e.target.maxLength && idx < inputs.length-1) {
-                        document.getElementById(inputs[idx+1]).focus();
-                    }
-                    const data = (curMode === 'main') ? db.main : db.subList[curSubName];
-                    if(data) {
-                        const keys = ['year', 'month', 'day', 'hour', 'minute'];
-                        data[keys[idx]] = e.target.value;
-                        saveToLocal();
-                    }
-                    checkReady();
-                });
-            });
-
-            // 刪除紀錄
-            document.getElementById('btn-del').addEventListener('click', () => {
-                if(confirm(`確定刪除 ${curSubName} 的資料？`)) {
-                    delete db.subList[curSubName];
-                    curSubName = '';
-                    saveToLocal();
-                    updateUI();
-                }
-            });
-
-            // 功能按鈕綁定
-            document.getElementById('btn-num').addEventListener('click', calcLifeNum);
-            document.getElementById('btn-astro').addEventListener('click', calcAstro);
+            const res = numerologyDB[sum];
+            const name = document.getElementById('username').value;
             
-            // MBTI 簡易觸發 (示範)
-            document.getElementById('btn-mbti').addEventListener('click', () => {
-                alert("MBTI 題庫已在後台準備就緒。點擊即將開始兩套平行題庫 A/B 測試。");
-                showResult("🧠 MBTI 靈魂人格", "你是【INFJ-A-C】理想主義的內在先知。<br>這是一份充滿文青感、適合 15-45 歲心智的深度剖析報告。");
-            });
-
-            // 初始載入
-            updateUI();
-            const dl = document.getElementById('friends-data');
-            Object.keys(db.subList).forEach(n => {
-                const o = document.createElement('option'); o.value = n; dl.appendChild(o);
-            });
-        });
+            document.getElementById('result-box').style.display = 'block';
+            document.getElementById('result-box').innerHTML = `
+                <h3>🔮 ${name} 的生命靈數報告</h3>
+                <span class="res-title">宇宙定錨：你是 ${sum} 號人 ( ${res.role} )</span>
+                <p>${res.traits}</p>
+                <span class="res-title">核心天賦</span><p>${res.talent}</p>
+                <span class="res-title">水晶保養建議</span><p>${res.crystal}</p>
+                <span class="res-title">人生課題</span><p>${res.tip}</p>
+            `;
+        }
+        // 將此函數掛載到你的按鈕上即可！
     </script>
 </body>
 </html>
