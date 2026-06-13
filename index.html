@@ -11,44 +11,46 @@
         .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 20px; text-align: center; }
         .container { width: 100%; max-width: 500px; background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); box-sizing: border-box; }
         
-        /* 🃏 塔羅牌區 */
         .tarot-card { width: 100%; max-width: 500px; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-sizing: border-box; border: 1px dashed var(--gold); text-align: center; background: rgba(0,0,0,0.3); }
         .tarot-title { font-size: 1.1rem; color: var(--gold); margin-bottom: 15px; font-weight: bold; letter-spacing: 1px; }
         
-        /* 🌈 彩虹卡設計 */
         .rainbow-card { width: 100%; max-width: 500px; padding: 20px 25px; border-radius: 12px; margin-bottom: 25px; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, 0.15); text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); transition: background 0.5s ease; }
         .rainbow-title { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; color: #ffffff; margin-bottom: 10px; font-weight: bold; opacity: 0.9; }
         .rainbow-text { font-size: 1.1rem; line-height: 1.6; color: #ffffff; font-style: italic; font-weight: 300; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
 
-        /* 使用者切換 */
         .user-type-selector { display: flex; justify-content: space-around; margin-bottom: 20px; background: #0b0c10; padding: 5px; border-radius: 8px; }
         .user-type-selector button { background: none; border: none; color: #888; padding: 10px; cursor: pointer; font-size: 1rem; width: 50%; transition: 0.3s; }
         .user-type-selector button.active { background: var(--gold); color: #0b0c10; border-radius: 6px; font-weight: bold; }
 
-        /* 表單設計 */
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 8px; color: var(--gold); font-size: 0.9rem; }
         input, select { width: 100%; padding: 12px; background: #0b0c10; border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 8px; color: white; font-size: 1rem; box-sizing: border-box; }
-        select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+        select { appearance: none; -webkit-appearance: none; cursor: pointer; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c5a059' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 12px center; background-size: 15px; padding-right: 40px; }
+        
         .name-row, .date-row { display: flex; gap: 10px; align-items: center; }
         .date-row input { text-align: center; }
         .delete-btn { background: rgba(231, 76, 60, 0.15); border: 1px solid var(--danger); color: var(--danger); padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; display: none; transition: 0.2s; }
         .delete-btn:hover { background: var(--danger); color: white; }
 
-        /* 系統按鈕 */
         .system-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px; }
         .sys-btn { padding: 15px 5px; background: #151c24; border: 1px solid var(--gold); border-radius: 10px; color: var(--gold); font-size: 0.95rem; cursor: pointer; font-weight: bold; transition: 0.2s; }
         .sys-btn:hover:not(.disabled) { background: var(--gold); color: #0b0c10; }
         .sys-btn.disabled { background: #121212; border-color: #353535; color: #353535; cursor: not-allowed; }
         .fusion-btn { grid-column: span 2; background: linear-gradient(135deg, #151c24, #2c1a3a); border-color: #9b59b6; color: #e2b3ff; }
+        
+        .match-btn { grid-column: span 2; background: linear-gradient(135deg, #e74c3c, #c0392b); border-color: #ff9a9e; color: #ffffff; font-size: 1rem; display: none; margin-top: 10px; box-shadow: 0 4px 15px rgba(231,76,60,0.3);}
+        .match-btn:hover:not(.disabled) { background: linear-gradient(135deg, #c0392b, #a93226); }
+        .match-btn.disabled { background: #121212; border-color: #353535; color: #353535; box-shadow: none; }
 
-        /* 解析結果區 */
         #result-box { margin-top: 25px; padding: 20px; background: #151c24; border-left: 4px solid var(--gold); border-radius: 5px; display: none; line-height: 1.6; width: 100%; max-width: 500px; box-sizing: border-box;}
         .res-title { color: #ffeb3b; font-weight: bold; display: block; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px dashed rgba(255,255,255,0.2); padding-bottom: 5px; }
         .res-content { color: #e0e0e0; font-size: 0.95rem; text-align: justify; margin-bottom: 10px; white-space: pre-line; }
         .line-badge { display: inline-block; background: rgba(197, 160, 89, 0.15); color: var(--gold); padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; margin: 3px; border: 1px solid rgba(197, 160, 89, 0.3); }
 
-        /* MBTI 測驗專區 */
+        .advanced-astro { background: rgba(0,0,0,0.3); border: 1px solid rgba(197, 160, 89, 0.3); padding: 15px; border-radius: 8px; margin-top: 15px; }
+        .ext-link { color: #3498db; text-decoration: none; font-size: 0.85rem; display: block; text-align: right; margin-top: 5px; }
+        .ext-link:hover { text-decoration: underline; }
+
         .quiz-container { background: #0b0c10; padding: 20px; border-radius: 10px; border: 1px solid var(--gold); text-align: center; }
         .quiz-progress { font-size: 0.8rem; color: #888; margin-bottom: 15px; letter-spacing: 2px; }
         .quiz-question { font-size: 1.1rem; color: #fff; margin-bottom: 25px; line-height: 1.5; font-weight: bold; }
@@ -56,6 +58,8 @@
         .quiz-opt:hover { background: rgba(197, 160, 89, 0.2); border-color: var(--gold); }
         .quiz-back-btn { width: 100%; padding: 12px; background: transparent; border: 1px dashed #888; color: #aaa; border-radius: 8px; margin-top: 10px; cursor: pointer; transition: 0.3s; }
         .quiz-back-btn:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: #fff; }
+
+        .footer-disclaimer { width: 100%; max-width: 500px; text-align: justify; margin-top: 35px; padding-top: 20px; border-top: 1px dashed rgba(197, 160, 89, 0.3); color: #888; font-size: 0.85rem; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -82,12 +86,15 @@
 
         <div class="form-group">
             <label id="name-label">名字 / 暱稱</label>
+            
             <div class="name-row" id="sub-select-row" style="display: none; margin-bottom: 10px;">
                 <select id="sub-user-select" style="flex: 1;"></select>
                 <button id="btn-del" class="delete-btn" title="刪除此紀錄">🗑️</button>
             </div>
+            
             <div class="name-row" id="name-input-row">
-                <input type="text" id="in-name" placeholder="請輸入名字">
+                <input type="text" id="in-name" placeholder="請輸入名字" style="flex: 1;">
+                <button id="btn-add-sub" class="sys-btn" style="padding: 12px 20px; margin: 0; background: var(--gold); color: #0b0c10; display: none; width: auto;">儲存</button>
             </div>
         </div>
 
@@ -103,7 +110,7 @@
         </div>
 
         <div class="form-group">
-            <label>精確出生時刻 (24小時制，星盤/紫微必填)</label>
+            <label>精確出生時刻 (24小時制，紫微/星盤推算用)</label>
             <div class="date-row">
                 <input type="tel" id="in-hh" placeholder="時" maxlength="2">
                 <span>:</span>
@@ -111,21 +118,55 @@
             </div>
         </div>
 
+        <div class="advanced-astro">
+            <label>🌟 進階星盤校正 (提升100%精準度)</label>
+            <div style="color: #aaa; font-size: 0.8rem; margin-bottom: 10px;">真正的星盤需依賴經緯度與星曆表，若您已知精準配置，請直接於下方校正：</div>
+            <div class="date-row" style="margin-bottom: 8px;">
+                <select id="in-asc-sign" style="flex: 1;">
+                    <option value="">上升星座 (未設定則由系統約略推算)</option>
+                    <option value="0">牡羊座</option><option value="1">金牛座</option>
+                    <option value="2">雙子座</option><option value="3">巨蟹座</option>
+                    <option value="4">獅子座</option><option value="5">處女座</option>
+                    <option value="6">天秤座</option><option value="7">天蠍座</option>
+                    <option value="8">射手座</option><option value="9">摩羯座</option>
+                    <option value="10">水瓶座</option><option value="11">雙魚座</option>
+                </select>
+            </div>
+            <div class="date-row">
+                <select id="in-moon-sign" style="flex: 1;">
+                    <option value="">月亮星座 (未設定則略過解析)</option>
+                    <option value="0">牡羊座</option><option value="1">金牛座</option>
+                    <option value="2">雙子座</option><option value="3">巨蟹座</option>
+                    <option value="4">獅子座</option><option value="5">處女座</option>
+                    <option value="6">天秤座</option><option value="7">天蠍座</option>
+                    <option value="8">射手座</option><option value="9">摩羯座</option>
+                    <option value="10">水瓶座</option><option value="11">雙魚座</option>
+                </select>
+            </div>
+            <a href="https://astrolabe.astroinfo.com.tw/astrolabe" target="_blank" class="ext-link">🔍 不知道配置？點此前往唐綺陽專屬星盤查詢</a>
+        </div>
+
         <div class="system-grid">
-            <button class="sys-btn" id="btn-num">🔮 生命靈數</button>
-            <button class="sys-btn" id="btn-mbti">🧠 MBTI 測驗</button>
+            <button class="sys-btn disabled" id="btn-num">🔮 生命靈數</button>
+            <button class="sys-btn disabled" id="btn-mbti">🧠 MBTI 測驗</button>
             <button class="sys-btn disabled" id="btn-astro">🌌 星座星盤</button>
             <button class="sys-btn disabled" id="btn-ziwei">👑 紫微斗數</button>
             <button class="sys-btn disabled" id="btn-bazi">🔥 生辰八字</button>
-            <button class="sys-btn fusion-btn" id="btn-fusion">✨ 靈魂全景大融合</button>
+            <button class="sys-btn fusion-btn disabled" id="btn-fusion">✨ 靈魂全景大融合</button>
+
+            <button class="sys-btn match-btn disabled" id="btn-match">💞 雙人能量合盤 ＆ 專屬擇吉日</button>
         </div>
 
         <div id="result-box"></div>
     </div>
 
+    <div class="footer-disclaimer">
+        ✨ 溫馨提醒：琉璃鏡的解析旨在協助您照見內心與探索潛能。命運的畫筆始終握在您的手中，以上內容僅供靈感啟發與參考，請帶著輕鬆愉悅的心情閱讀，別讓文字限制了您的無限可能喔！
+    </div>
+
     <script>
         // ==========================================
-        // 🃏 塔羅牌資料庫
+        // 📚 全系統資料庫模組 (Data)
         // ==========================================
         const tarotDB = [
             { card: "0. 愚者 (The Fool)", meaning: "勇敢踏上未知旅程，保持純真與對世界的好奇。今天適合放下顧慮，大膽放手一搏！" },
@@ -144,40 +185,16 @@
             { card: "XXI. 世界 (The World)", meaning: "圓滿達成與和諧。一個階段的完美結束，準備好迎接下一個嶄新的美好開始。" }
         ];
 
-        // ==========================================
-        // 🌈 50句彩虹卡資料庫
-        // ==========================================
         const rainbowQuotes = [
-            { text: "我安全地立足於大地，宇宙無條件地支持著我的一切。", color: "#c0392b" }, { text: "我信任生命的流動，所有的發生都是為了帶給我最深的滋養。", color: "#c0392b" },
-            { text: "我的身體是一座神聖的神殿，我用愛與感激照顧它。", color: "#c0392b" }, { text: "我允許自己擁有豐盛的物質生活，這是我與生俱來的權利。", color: "#c0392b" },
-            { text: "我深深紮根於當下，每一次呼吸都讓我更加平靜與踏實。", color: "#c0392b" }, { text: "過去的恐懼已經消散，我現在充滿了前進的勇氣與力量。", color: "#c0392b" },
-            { text: "我是安全的，我是被保護的，我能在任何環境中找到內在的安定。", color: "#c0392b" }, { text: "我全然接納我所有的情緒，它們是我靈魂最真實的語言。", color: "#d35400" },
-            { text: "我允許自己享受生命中的每一份純粹的快樂與美好。", color: "#d35400" }, { text: "創造力在我的血液中流淌，我能輕鬆地將靈感化為現實。", color: "#d35400" },
-            { text: "我值得擁有一段充滿熱情、尊重與和諧的親密關係。", color: "#d35400" }, { text: "我不再批判自己的脆弱，我用溫柔的心擁抱內在的小孩。", color: "#d35400" },
-            { text: "我的生命充滿了無限的可能性，我樂於迎接每一個驚喜。", color: "#d35400" }, { text: "我與我的感受和諧共處，並讓情緒成為指引我的明燈。", color: "#d35400" },
-            { text: "我深知自己的價值，我不需要透過別人的認同來證明自己。", color: "#f39c12" }, { text: "我擁有強大的內在力量，能優雅地跨越眼前的任何障礙。", color: "#f39c12" },
-            { text: "我勇敢地為自己發聲，我的每一個決定都充滿了自信與光芒。", color: "#f39c12" }, { text: "我允許自己發光發熱，我的存在本身就是一份珍貴的禮物。", color: "#f39c12" },
-            { text: "我信任我的直覺與判斷，我就是我自己生命的最佳舵手。", color: "#f39c12" }, { text: "我把專注力放在我能控制的事物上，並對未來充滿期待。", color: "#f39c12" },
-            { text: "我不再恐懼失敗，每一次的嘗試都讓我變得更加卓越與強大。", color: "#f39c12" }, { text: "我用愛與包容化解所有的競爭與比較，我走在專屬我的花路上。", color: "#f39c12" },
-            { text: "我無條件地愛著完整的自己，包括那些我不完美的部分。", color: "#27ae60" }, { text: "我願意原諒過去的傷害，釋放自己，讓心靈重獲自由。", color: "#27ae60" },
-            { text: "愛是我生命中最純粹的能量，我給予愛，也敞開心胸接收愛。", color: "#27ae60" }, { text: "我與身邊的所有人事物都保持著和諧與溫暖的連結。", color: "#27ae60" },
-            { text: "我選擇用慈悲的眼光看待世界，周圍的一切也以善意回應我。", color: "#27ae60" }, { text: "我的心是開放且清澈的，我允許奇蹟在我的生命中自然發生。", color: "#27ae60" },
-            { text: "每一天，我都比昨天更懂得如何溫柔地對待自己與他人。", color: "#27ae60" }, { text: "我的心靈充滿了綠意盎然的生機，任何傷痛都能在此被療癒。", color: "#27ae60" },
-            { text: "我能平靜且清晰地表達我最真實的想法與需求。", color: "#2980b9" }, { text: "我的話語充滿了力量與愛，能為周圍的人帶來溫暖與啟發。", color: "#2980b9" },
-            { text: "我不再為了迎合他人而隱藏真實的自己，我活得真誠且坦蕩。", color: "#2980b9" }, { text: "我懂得傾聽內在的聲音，並將這份智慧傳遞給世界。", color: "#2980b9" },
-            { text: "我用善意與世界溝通，所有的誤解都能在愛的頻率中化解。", color: "#2980b9" }, { text: "我的創意透過我的聲音、文字與行動，完美地流動出來。", color: "#2980b9" },
-            { text: "我說出的每一句話，都是一顆種下美好未來的種子。", color: "#2980b9" }, { text: "我的直覺極其敏銳，它總能帶領我走向最正確的道路。", color: "#34495e" },
-            { text: "我能看透事物的表象，洞察隱藏在背後的深刻真理。", color: "#34495e" }, { text: "我的思緒清晰而寧靜，我在內在的靜默中找到了所有的答案。", color: "#34495e" },
-            { text: "我信任宇宙的時機，我知道一切都在最完美的安排中展現。", color: "#34495e" }, { text: "我放下過度的控制與分析，讓靈魂的智慧引導我的每一步。", color: "#34495e" },
-            { text: "我用開放的心胸去理解不同的觀點，我的視界無限寬廣。", color: "#34495e" }, { text: "我在冥想與放鬆中，輕易地連結到最高維度的自我。", color: "#34495e" },
-            { text: "我與宇宙的源頭緊密相連，我本就是神聖且完美的存在。", color: "#8e44ad" }, { text: "我的生命是一個奇蹟，我感恩每一天所體驗到的豐盛與恩典。", color: "#8e44ad" },
-            { text: "我放下所有的執著與恐懼，將一切交託給宇宙的最高智慧。", color: "#8e44ad" }, { text: "我明白我與萬物合而為一，我不孤單，我被整個宇宙深愛著。", color: "#8e44ad" },
-            { text: "我允許靈性的光芒灑滿我的全身，洗淨所有的疲憊與迷惘。", color: "#8e44ad" }, { text: "我的存在是為了體驗愛、傳遞愛，我是宇宙最美麗的結晶。", color: "#8e44ad" }
+            { text: "我安全地立足於大地，宇宙無條件地支持著我的一切。", color: "#c0392b" }, { text: "我信任生命的流動，所有的發生都是為了帶給我最深的滋養。", color: "#d35400" },
+            { text: "我值得擁有一段充滿熱情、尊重與和諧的親密關係。", color: "#d35400" }, { text: "我深知自己的價值，我不需要透過別人的認同來證明自己。", color: "#f39c12" },
+            { text: "我把專注力放在我能控制的事物上，並對未來充滿期待。", color: "#f39c12" }, { text: "我無條件地愛著完整的自己，包括那些我不完美的部分。", color: "#27ae60" },
+            { text: "愛是我生命中最純粹的能量，我給予愛，也敞開心胸接收愛。", color: "#27ae60" }, { text: "我能平靜且清晰地表達我最真實的想法與需求。", color: "#2980b9" },
+            { text: "我不再為了迎合他人而隱藏真實的自己，我活得真誠且坦蕩。", color: "#2980b9" }, { text: "我的直覺極其敏銳，它總能帶領我走向最正確的道路。", color: "#34495e" },
+            { text: "我放下過度的控制與分析，讓靈魂的智慧引導我的每一步。", color: "#34495e" }, { text: "我與宇宙的源頭緊密相連，我本就是神聖且完美的存在。", color: "#8e44ad" },
+            { text: "我的存在是為了體驗愛、傳遞愛，我是宇宙最美麗的結晶。", color: "#8e44ad" }
         ];
 
-        // ==========================================
-        // 🔮 生命靈數與天賦連線資料庫
-        // ==========================================
         const numDB = {
             1: { role: "開創先鋒", chakra: "海底輪 (紅色)", crystal: "黑曜石、紅石榴、茶晶", crystal_effect: "消除負能量、提升氣血、防小人", traits: "【性格優勢】獨立自主、勇敢果斷，具備強烈的開創性與領導力。遇到問題總能當機立斷，有著找到隙縫市場的超強能力。\n【隱藏盲點】有時太過我行我素，容易讓人覺得缺乏耐性。\n【愛情與金錢】在感情中渴望主導；適合開拓藍海市場，賺取開疆闢土的創業財。" },
             2: { role: "溫柔協調者", chakra: "臍輪 (橙色)", crystal: "太陽石、琥珀、紅玉髓", crystal_effect: "釋放焦慮、提高信心勇氣、招貴人", traits: "【性格優勢】極具同理心、心思細膩，對美感有敏銳感知，擅長溝通與分工合作。\n【隱藏盲點】容易受外界影響，有時過度在意他人評價而失去主見。\n【愛情與金錢】在感情中較為黏人；適合透過合作、或是精緻高單價商品來獲取財富。" },
@@ -205,9 +222,6 @@
             { nums: [4,8], name: "48 穩定勤勞模範線", high: "努力勤奮、執行力強、做事穩固高效率。", low: "焦慮不安、太過在乎成功與金錢，給自己極大壓力。" }
         ];
 
-        // ==========================================
-        // 🧠 MBTI 題庫與16型資料庫
-        // ==========================================
         const mbtiBank = {
             EI: [
                 { q: "在經歷了高壓的一週後，週末你傾向如何恢復能量？", a: "參加朋友聚會，在熱鬧中獲得活力", b: "獨自待在家中，安靜地做自己的事", vA: "E", vB: "I" },
@@ -266,31 +280,25 @@
             "ESFP": { role: "魅力發光體", talent: "【點燃氣氛的感染力】只要有你在的地方就不會有冷場。懂得享受生活，能用滿滿的活力感染身邊的所有人。" }
         };
 
-        // ==========================================
-        // 🌌 心理占星與12宮位資料庫
-        // ==========================================
         const astroDB = [
-            { name: "牡羊", ego: "尋求純粹的存在感與獨立自主。內在住著一個無所畏懼的戰士，渴望在挑戰中確認自己的價值。", mask: "給人果斷、充滿活力的第一印象，習慣用『主動出擊』來掩飾內心的不安全感。" },
-            { name: "金牛", ego: "追求物質世界的感官體驗與深度安定。內在是安靜的築工，渴望透過擁有與建立來獲得心靈平靜。", mask: "展現出溫和、從容且不可撼動的姿態，用『不變應萬變』作為靈魂的防護罩。" },
-            { name: "雙子", ego: "渴望資訊的流動與心智的交流。內在是不停歇的旅人，害怕無聊，總在尋找生命中各種有趣的拼圖。", mask: "機智、靈活且充滿好奇心。用『幽默與多話』來保持與世界的安全距離。" },
-            { name: "巨蟹", ego: "尋求情感的絕對歸屬與滋養。內在是溫柔的守護者，所有的防禦都是為了保護內心最柔軟的角落。", mask: "親切、敏感且具備母性特質。習慣用『照顧他人』來建立自己被需要的安全感。" },
-            { name: "獅子", ego: "渴望被看見、被認同與揮灑創造力。內在是驕傲的國王/女王，生命的動力來自於愛與被愛。", mask: "自信、熱情且自帶光芒。即使內心脆弱，外表也必須撐起『我很好』的華麗面具。" },
-            { name: "處女", ego: "追求秩序、純粹與完美的服務。內在是精細的工匠，透過不斷地改善與淨化來確認自己存在的意義。", mask: "謙虛、低調且帶有批判性的精準。用『實用主義』來掩飾內心對失控的焦慮。" },
-            { name: "天秤", ego: "尋求極致的和諧與鏡像的投射。內在是優雅的調停者，習慣透過與他人的關係來認識完整的自己。", mask: "優雅、隨和且極具社交魅力。用『維持和平』的姿態來逃避直接的衝突與對立。" },
-            { name: "天蠍", ego: "渴望靈魂深處的轉化與絕對的真實。內在是無畏的煉金術士，敢於直視人性中最黑暗與深刻的層面。", mask: "神祕、深邃且帶有強烈的洞察力。用『極度的隱私與不信任』來保護自己免受背叛。" },
-            { name: "射手", ego: "追求宇宙的真理與生命的宏大意義。內在是自由的探險家，靈魂永遠望向遙遠的地平線。", mask: "樂觀、開朗且不拘小節。習慣用『哲學式的幽默』來化解生命中沉重的傷痛。" },
-            { name: "摩羯", ego: "致力於建立不朽的結構與社會成就。內在是孤獨的長老，相信唯有透過時間的淬鍊才能證明價值。", mask: "冷靜、負責且帶有不可侵犯的威嚴。用『成就與世俗地位』來作為靈魂最堅實的盔甲。" },
-            { name: "水瓶", ego: "追求集體意識的突破與絕對的獨立。內在是前衛的革命家，渴望打破框架，引領時代走向未來。", mask: "友善卻疏離、理智且前衛。用『冷眼旁觀的客觀』來避免被世俗的情感所綁架。" },
-            { name: "雙魚", ego: "渴望靈魂的消融與宇宙的合一。內在是充滿慈悲的夢想家，對世間所有的痛苦都有著深刻的共鳴。", mask: "柔軟、迷幻且帶有極強的適應力。用『迷糊與逃避』來作為抵禦殘酷現實的緩衝區。" }
+            { name: "牡羊", ego: "尋求純粹的存在感與獨立自主。內在住著一個無所畏懼的戰士，渴望在挑戰中確認價值。", mask: "給人果斷、充滿活力的第一印象，習慣用『主動出擊』來掩飾內心的不安全感。", moon: "情緒來得快去得快。你需要直接表達感受，壓抑會讓你變得暴躁。安全感來自於『掌控權』與『行動力』。" },
+            { name: "金牛", ego: "追求物質世界的感官體驗與深度安定。內在是安靜的築工，渴望透過擁有與建立獲得平靜。", mask: "展現出溫和、從容且不可撼動的姿態，用『不變應萬變』作為靈魂的防護罩。", moon: "情緒穩定但極需物質或感官的安撫。安全感建立在『確定性』與『安穩的日常』中。" },
+            { name: "雙子", ego: "渴望資訊的流動與心智的交流。內在是不停歇的旅人，害怕無聊，總在尋找生命中的拼圖。", mask: "機智、靈活且充滿好奇心。用『幽默與多話』來保持與世界的安全距離。", moon: "習慣用大腦去『思考』情緒而非感受它。你需要透過對話或書寫來消化不安。安全感來自於『被傾聽』。" },
+            { name: "巨蟹", ego: "尋求情感的絕對歸屬與滋養。內在是溫柔的守護者，防禦都是為了保護內心最柔軟的角落。", mask: "親切、敏感且具備母性特質。習慣用『照顧他人』來建立自己被需要的安全感。", moon: "情感的雷達極其敏銳，容易吸收環境氛圍。家或私密空間是你靈魂的避風港，安全感來自『歸屬感』。" },
+            { name: "獅子", ego: "渴望被看見、被認同與揮灑創造力。內在是驕傲的國王/女王，生命的動力來自於愛與被愛。", mask: "自信、熱情且自帶光芒。即使內心脆弱，外表也必須撐起『我很好』的華麗面具。", moon: "內在住著一個需要被誇獎與肯定的小孩。當情緒低落時，你需要被當作特別的存在來對待。" },
+            { name: "處女", ego: "追求秩序、純粹與完美的服務。內在是精細的工匠，透過不斷地改善來確認自己存在的意義。", mask: "謙虛、低調且帶有批判性的精準。用『實用主義』來掩飾內心對失控的焦慮。", moon: "習慣將情緒轉化為整理、打掃或解決問題。混亂的環境會直接引發你的焦慮。安全感來自『規律』。" },
+            { name: "天秤", ego: "尋求極致的和諧與鏡像的投射。內在是優雅的調停者，習慣透過與他人的關係來認識完整的自己。", mask: "優雅、隨和且極具社交魅力。用『維持和平』的姿態來逃避直接的衝突與對立。", moon: "極度害怕衝突，常為了配合他人而壓抑真實感受。美的事物能安撫你的神經。安全感來自『和諧的人際關係』。" },
+            { name: "天蠍", ego: "渴望靈魂深處的轉化與絕對的真實。內在是無畏的煉金術士，敢於直視人性中最黑暗的層面。", mask: "神祕、深邃且帶有強烈的洞察力。用『極度的隱私與不信任』來保護自己免受背叛。", moon: "情緒極端且深刻。你需要全然的信任才能卸下防備，背叛是絕對的禁忌。安全感來自『靈魂的交融』。" },
+            { name: "射手", ego: "追求宇宙的真理與生命的宏大意義。內在是自由的探險家，靈魂永遠望向遙遠的地平線。", mask: "樂觀、開朗且不拘小節。習慣用『哲學式的幽默』來化解生命中沉重的傷痛。", moon: "討厭被束縛與沉重的情感勒索。當情緒卡關時，一場旅行或學習新知是最好的解藥。安全感來自『自由』。" },
+            { name: "摩羯", ego: "致力於建立不朽的結構與社會成就。內在是孤獨的長老，相信唯有透過時間淬鍊才能證明價值。", mask: "冷靜、負責且帶有不可侵犯的威嚴。用『成就與世俗地位』來作為靈魂最堅實的盔甲。", moon: "習慣壓抑脆弱，認為情緒是沒有效率的。你習慣獨自消化悲傷，用工作轉移注意力。" },
+            { name: "水瓶", ego: "追求集體意識的突破與絕對的獨立。內在是前衛的革命家，渴望打破框架，引領時代走向未來。", mask: "友善卻疏離、理智且前衛。用『冷眼旁觀的客觀』來避免被世俗的情感所綁架。", moon: "對於濃烈、黏膩的情感感到恐懼，習慣將自己抽離，用第三人稱看待痛苦。安全感來自『思想共鳴』。" },
+            { name: "雙魚", ego: "渴望靈魂的消融與宇宙的合一。內在是充滿慈悲的夢想家，對世間的痛苦都有著深刻的共鳴。", mask: "柔軟、迷幻且帶有極強的適應力。用『迷糊與逃避』來作為抵禦殘酷現實的緩衝區。", moon: "情感的吸水海綿，容易與世界的情緒共振。你需要冥想、藝術或獨處來排毒。安全感來自『無條件的愛』。" }
         ];
 
         const houseNames = ["命宮", "財帛宮", "兄弟宮", "田宅宮", "子女宮", "奴僕宮", "夫妻宮", "疾厄宮", "遷移宮", "官祿宮", "福德宮", "玄祕宮"];
         const houseThemes = ["自我覺醒與給人的第一印象", "金錢觀念與獲取自我價值的方式", "日常溝通、思維模式與手足互動", "原生家庭印記與建立內心避風港的需求", "戀愛模式、創造力與內在小孩的展現", "職場態度、日常秩序與對待身心健康的方式", "吸引的伴侶類型與一對一深度關係的建立", "面對深層恐懼、信任與資源共享的態度", "精神信仰、高等學習與人生哲學的追尋", "社會地位、天職召喚與事業野心的投射", "社交圈選擇、群體理想與願景的共創", "潛意識的暗流、業力釋放與靈性層面的歸宿"];
         const signTraits = ["展現出充滿開創、衝動與無畏競爭的能量。", "帶有追求穩定、重視感官享受與務實累積的特質。", "呈現靈活多變、極度依賴資訊與溝通交流的傾向。", "充滿情感豐沛、尋求安全感與深刻歸屬的防禦性。", "渴望成為舞台焦點、需要被看見與被熱烈肯定的光芒。", "帶有追求完美、注重細節與純粹服務精神的微觀視角。", "極度在乎和諧、平衡，以及關係建立的美學考量。", "展現出深刻、極端，渴望靈魂轉化與絕對掌控的執念。", "帶有樂觀自由、追尋更高層次意義與哲學探索的熱情。", "呈現嚴謹負責、致力於建立世俗成就與不朽結構的野心。", "帶有叛逆客觀、打破傳統並引領集體意識的疏離感。", "充滿慈悲迷幻、容易與集體潛意識共鳴並選擇消融邊界的特質。"];
 
-        // ==========================================
-        // 👑 紫微斗數資料庫
-        // ==========================================
         const ziweiStarsDB = [
             { name: "七殺星", traits: "無畏的開創者。敢愛敢恨，不畏懼挑戰，具備極強的執行力。", lesson: "謀定而後動，培養耐心與柔軟，避免因衝動而導致全盤皆輸。" },
             { name: "破軍星", traits: "破局的先鋒。熱愛打破現狀，在破壞與重建中尋找意義，不甘平庸。", lesson: "學會收尾與珍惜現有的成就，不要為了一時的刺激而輕易放棄。" },
@@ -321,28 +329,25 @@
             "3": { lu: "破軍 (創新與變革)", quan: "巨門 (言語說服力)", ke: "太陰 (女性貴人)", ji: "貪狼 (慾望反撲與爛桃花)" }  
         };
 
-        // ==========================================
-        // 🔥 生辰八字心理五行資料庫
-        // ==========================================
         const stemsDB = [
-            { name: "甲木", nature: "參天大樹", desc: "向上生長、不屈不撓。你的靈魂帶有強烈的生命力與庇蔭他人的特質，性格正直且具備領導風範。", shadow: "過度固執、寧折不彎，容易因為不願妥協而讓自己遍體鱗傷。", mantra: "「我允許自己在狂風中彎腰，因為我的根基無比深厚。」" },
-            { name: "乙木", nature: "蔓藤花草", desc: "柔軟堅韌、適應力極強。你懂得在夾縫中求生存，外表溫和，但內心擁有一股不達目的絕不罷休的韌性。", shadow: "過度依賴他人的攀附，或是為了迎合環境而失去自己的本心。", mantra: "「我是美麗且獨立的存在，不需要依附高牆也能綻放。」" },
-            { name: "丙火", nature: "烈日驕陽", desc: "熱情無私、光芒萬丈。你喜歡照亮別人，性格慷慨大方，情緒來得快去得也快，是群體中的溫暖核心。", shadow: "能量過度燃燒導致的焦慮與暴躁，常因為付出不被看見而感到強烈失落。", mantra: "「我不需要時刻照亮別人，太陽也有下山休息的權利。」" },
-            { name: "丁火", nature: "幽靜燭光", desc: "溫柔細膩、洞察人心。你的光芒不刺眼卻極具穿透力，心思細密，能看透他人的需求並給予最貼心的指引。", shadow: "多愁善感、內心容易產生隱暗的嫉妒或自我內耗。", mantra: "「我的光芒雖然微小，卻足以點亮最深的黑暗。」" },
-            { name: "戊土", nature: "崇山峻嶺", desc: "穩重包容、令人安心。你給人一種不可撼動的沉穩感，重信用、守承諾，是所有人最堅實的後盾。", shadow: "過於封閉與頑固，不願改變現狀，容易將情緒壓抑成內傷。", mantra: "「我堅如磐石，同時也樂於迎接風雨帶來的雕琢。」" },
-            { name: "己土", nature: "滋養田園", desc: "孕育萬物、內斂涵養。你的愛是無私且包容的，懂得吸收並轉化各種情緒，具備極強的忍耐力與母性特質。", shadow: "毫無底線的包容與退讓，容易變成吸收他人情緒垃圾的黑洞。", mantra: "「我的滋養是有邊界的，我必須先肥沃自己的靈魂。」" },
-            { name: "庚金", nature: "淬鍊利刃", desc: "果決剛毅、重情重義。你帶有一股肅殺與決斷的氣場，愛憎分明，一旦下定決心便勢不可擋。", shadow: "講話過於銳利傷人，或是因為過度剛硬而折斷了珍貴的人際關係。", mantra: "「真正的強大不在於無堅不摧，而在於懂得何時收起鋒芒。」" },
-            { name: "辛金", nature: "璀璨珠寶", desc: "精緻優雅、追求完美。你的靈魂自帶貴氣，對細節與美感要求極高，外表柔弱但內心充滿不服輸的傲骨。", shadow: "過度的完美主義與愛面子，容易因為一點瑕疵就全盤否定自己。", mantra: "「我的價值不取決於毫無瑕疵，我的裂痕也閃爍著獨特的光芒。」" },
-            { name: "壬水", nature: "奔騰江河", desc: "自由奔放、智慧深邃。你無法被任何框架束縛，思維廣闊且具備極強的包容力，喜歡在變動中尋找真理。", shadow: "缺乏紀律與方向感，容易隨波逐流，情緒氾濫時會淹沒理智。", mantra: "「我擁有包容一切的廣度，也有著堅定向前流動的方向。」" },
-            { name: "癸水", nature: "潤物雨露", desc: "浪漫感性、滲透人心。你的直覺極其敏銳，情感豐富且帶有神祕感，能用最輕柔的方式影響周遭的一切。", shadow: "深沉的憂鬱與被害妄想，容易過度解讀他人的言行而困住自己。", mantra: "「我允許情感自然流動，但我不是情緒的奴隸。」" }
+            { name: "甲木", nature: "參天大樹", desc: "向上生長、不屈不撓。靈魂帶有強烈的生命力與庇蔭他人的特質，性格正直且具備領導風範。", shadow: "過度固執、寧折不彎，容易因為不願妥協而讓自己遍體鱗傷。", mantra: "「我允許自己在狂風中彎腰，因為我的根基無比深厚。」" },
+            { name: "乙木", nature: "蔓藤花草", desc: "柔軟堅韌、適應力極強。懂得在夾縫中求生存，外表溫和，但內心擁有一股不達目的絕不罷休的韌性。", shadow: "過度依賴他人的攀附，或是為了迎合環境而失去自己的本心。", mantra: "「我是美麗且獨立的存在，不需要依附高牆也能綻放。」" },
+            { name: "丙火", nature: "烈日驕陽", desc: "熱情無私、光芒萬丈。喜歡照亮別人，性格慷慨大方，情緒來得快去得也快，是群體中的溫暖核心。", shadow: "能量過度燃燒導致的焦慮與暴躁，常因為付出不被看見而感到強烈失落。", mantra: "「我不需要時刻照亮別人，太陽也有下山休息的權利。」" },
+            { name: "丁火", nature: "幽靜燭光", desc: "溫柔細膩、洞察人心。光芒不刺眼卻極具穿透力，心思細密，能看透他人的需求並給予最貼心的指引。", shadow: "多愁善感、內心容易產生隱暗的嫉妒或自我內耗。", mantra: "「我的光芒雖然微小，卻足以點亮最深的黑暗。」" },
+            { name: "戊土", nature: "崇山峻嶺", desc: "穩重包容、令人安心。給人一種不可撼動的沉穩感，重信用、守承諾，是所有人最堅實的後盾。", shadow: "過於封閉與頑固，不願改變現狀，容易將情緒壓抑成內傷。", mantra: "「我堅如磐石，同時也樂於迎接風雨帶來的雕琢。」" },
+            { name: "己土", nature: "滋養田園", desc: "孕育萬物、內斂涵養。愛是無私且包容的，懂得吸收並轉化各種情緒，具備極強的忍耐力與母性特質。", shadow: "毫無底線的包容與退讓，容易變成吸收他人情緒垃圾的黑洞。", mantra: "「我的滋養是有邊界的，我必須先肥沃自己的靈魂。」" },
+            { name: "庚金", nature: "淬鍊利刃", desc: "果決剛毅、重情重義。帶有一股肅殺與決斷的氣場，愛憎分明，一旦下定決心便勢不可擋。", shadow: "講話過於銳利傷人，或是因為過度剛硬而折斷了珍貴的人際關係。", mantra: "「真正的強大不在於無堅不摧，而在於懂得何時收起鋒芒。」" },
+            { name: "辛金", nature: "璀璨珠寶", desc: "精緻優雅、追求完美。靈魂自帶貴氣，對細節與美感要求極高，外表柔弱但內心充滿不服輸的傲骨。", shadow: "過度的完美主義與愛面子，容易因為一點瑕疵就全盤否定自己。", mantra: "「我的價值不取決於毫無瑕疵，我的裂痕也閃爍著獨特的光芒。」" },
+            { name: "壬水", nature: "奔騰江河", desc: "自由奔放、智慧深邃。無法被任何框架束縛，思維廣闊且具備極強的包容力，喜歡在變動中尋找真理。", shadow: "缺乏紀律與方向感，容易隨波逐流，情緒氾濫時會淹沒理智。", mantra: "「我擁有包容一切的廣度，也有著堅定向前流動的方向。」" },
+            { name: "癸水", nature: "潤物雨露", desc: "浪漫感性、滲透人心。直覺極其敏銳，情感豐富且帶有神祕感，能用最輕柔的方式影響周遭的一切。", shadow: "深沉的憂鬱與被害妄想，容易過度解讀他人的言行而困住自己。", mantra: "「我允許情感自然流動，但我不是情緒的奴隸。」" }
         ];
 
         const branchesDB = ["子鼠 (靈動之水)", "丑牛 (堅忍之土)", "寅虎 (開創之木)", "卯兔 (溫和之木)", "辰龍 (變幻之土)", "巳蛇 (深邃之火)", "午馬 (熱烈之火)", "未羊 (包容之土)", "申猴 (機智之金)", "酉雞 (純粹之金)", "戌狗 (守護之土)", "亥豬 (寬廣之水)"];
 
         // ==========================================
-        // 系統狀態與共用函數
+        // 系統狀態與儲存邏輯 
         // ==========================================
-        let db = { main: { name: "", year: "", month: "", day: "", hour: "", minute: "", mbti: "" }, subList: {} };
+        let db = { main: { name: "", year: "", month: "", day: "", hour: "", minute: "", mbti: "", ascSign: "", moonSign: "" }, subList: {} };
         let curMode = 'main';
         let curSubName = ''; 
         let mbtiQuestions = [];
@@ -350,56 +355,77 @@
         let mbtiScores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0, A:0, O:0, H:0, C:0 };
         let mbtiHistory = []; 
 
-        function saveToLocal() { localStorage.setItem('prism_v_final', JSON.stringify(db)); }
+        function saveToLocal() { localStorage.setItem('prism_v_final_master', JSON.stringify(db)); }
 
         function renderSubDropdown() {
             const select = document.getElementById('sub-user-select');
             select.innerHTML = '<option value="">-- 選擇已儲存的親友 --</option><option value="_NEW_" style="color:#c5a059; font-weight:bold;">+ 新增親友</option>';
             Object.keys(db.subList).forEach(name => {
                 const opt = document.createElement('option');
-                opt.value = name;
-                opt.textContent = name;
+                opt.value = name; opt.textContent = name;
                 select.appendChild(opt);
             });
             select.value = curSubName || "";
         }
 
         function updateUI() {
-            if (curMode === 'main') {
-                document.getElementById('name-label').innerText = "名字 / 暱稱";
-                document.getElementById('sub-select-row').style.display = 'none';
-                document.getElementById('name-input-row').style.display = 'flex';
+            const isMain = curMode === 'main';
+            document.getElementById('name-label').innerText = isMain ? "名字 / 暱稱" : "親友檔案管理";
+            
+            // 根據模式切換下拉選單的顯示
+            document.getElementById('sub-select-row').style.display = isMain ? 'none' : 'flex';
+            if (!isMain) { renderSubDropdown(); }
+            
+            // 無論何種模式，永遠顯示名字輸入框這列 (主使用者可編輯，親友模式根據狀態顯示編輯或新增)
+            document.getElementById('name-input-row').style.display = 'flex';
+            
+            if (isMain) {
+                document.getElementById('btn-match').style.display = 'none';
+                document.getElementById('btn-add-sub').style.display = 'none';
+                document.getElementById('btn-del').style.display = 'none';
                 
                 const data = db.main;
                 document.getElementById('in-name').value = data.name || "";
+                document.getElementById('in-name').placeholder = "請輸入名字";
                 document.getElementById('in-y').value = data.year || "";
                 document.getElementById('in-m').value = data.month || "";
                 document.getElementById('in-d').value = data.day || "";
                 document.getElementById('in-hh').value = data.hour || "";
                 document.getElementById('in-mm').value = data.minute || "";
+                document.getElementById('in-asc-sign').value = data.ascSign || "";
+                document.getElementById('in-moon-sign').value = data.moonSign || "";
             } else {
-                document.getElementById('name-label').innerText = "親友檔案管理";
-                document.getElementById('sub-select-row').style.display = 'flex';
-                renderSubDropdown();
-
+                document.getElementById('btn-match').style.display = 'block';
+                
                 if (!curSubName || curSubName === "_NEW_") {
-                    document.getElementById('name-input-row').style.display = 'flex';
+                    // 新增親友模式：顯示儲存按鈕、清空輸入框
+                    document.getElementById('btn-add-sub').style.display = 'block';
+                    document.getElementById('btn-del').style.display = 'none';
+                    
                     document.getElementById('in-name').value = "";
+                    document.getElementById('in-name').placeholder = "請輸入新增的親友名字";
                     document.getElementById('in-y').value = "";
                     document.getElementById('in-m').value = "";
                     document.getElementById('in-d').value = "";
                     document.getElementById('in-hh').value = "";
                     document.getElementById('in-mm').value = "";
-                    document.getElementById('btn-del').style.display = 'none';
+                    document.getElementById('in-asc-sign').value = "";
+                    document.getElementById('in-moon-sign').value = "";
                 } else {
-                    document.getElementById('name-input-row').style.display = 'none';
+                    // 編輯已有親友模式：隱藏儲存按鈕(自動存檔)、顯示刪除按鈕
+                    document.getElementById('btn-add-sub').style.display = 'none';
+                    document.getElementById('btn-del').style.display = 'block';
+                    
                     const data = db.subList[curSubName];
+                    document.getElementById('in-name').value = data.name || curSubName;
+                    document.getElementById('in-name').placeholder = "修改親友名字";
                     document.getElementById('in-y').value = data.year || "";
                     document.getElementById('in-m').value = data.month || "";
                     document.getElementById('in-d').value = data.day || "";
                     document.getElementById('in-hh').value = data.hour || "";
                     document.getElementById('in-mm').value = data.minute || "";
-                    document.getElementById('btn-del').style.display = 'block';
+                    document.getElementById('in-asc-sign').value = data.ascSign || "";
+                    document.getElementById('in-moon-sign').value = data.moonSign || "";
                 }
             }
             checkReady();
@@ -424,6 +450,17 @@
                 const b = document.getElementById(id);
                 if(exactReady) b.classList.remove('disabled'); else b.classList.add('disabled');
             });
+            
+            if (curMode === 'sub' && curSubName && curSubName !== "_NEW_") {
+                const mData = db.main;
+                const mReady = (mData.year && mData.month && mData.day);
+                const btnMatch = document.getElementById('btn-match');
+                if (basicReady && mReady) {
+                    btnMatch.classList.remove('disabled');
+                } else {
+                    btnMatch.classList.add('disabled');
+                }
+            }
         }
 
         function showResult(htmlContent) {
@@ -434,7 +471,7 @@
         }
 
         // ==========================================
-        // 所有運算模組
+        // 模組算法區 (全解禁)
         // ==========================================
         function drawTarot() {
             const card = tarotDB[Math.floor(Math.random() * tarotDB.length)];
@@ -445,7 +482,64 @@
             `;
         }
 
-        // 🔮 生命靈數
+        // --- 💞 雙人能量合盤 ＆ 專屬擇吉日 ---
+        function calcMatch() {
+            const mainData = db.main;
+            const subData = db.subList[curSubName];
+            
+            if(!mainData.year || !mainData.month || !mainData.day || !subData.year || !subData.month || !subData.day) {
+                alert("雙人合盤需要先完善「你自己」與「親友」雙方的出生年月日喔！\n(請先回「遇見自己」頁面檢查你的資料是否填寫)"); return;
+            }
+
+            let sum1 = (mainData.year + mainData.month + mainData.day).split('').reduce((a, b) => a + parseInt(b), 0);
+            while (sum1 > 9) sum1 = sum1.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+            
+            let sum2 = (subData.year + subData.month + subData.day).split('').reduce((a, b) => a + parseInt(b), 0);
+            while (sum2 > 9) sum2 = sum2.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+            
+            let matchScore = (sum1 + sum2) % 3;
+            let matchText = "";
+            if(matchScore === 0) {
+                matchText = "你們是彼此靈魂的催化劑！在一起時總能激發出意想不到的靈感與火花，是非常強大的創造力組合。不論是一起旅遊或共同完成一項挑戰，都能發揮1+1大於2的能量。";
+            } else if (matchScore === 1) {
+                matchText = "你們是互補型的靈魂伴侶！一個善於開創，一個善於守成。雖然有時步調不同，但只要學會欣賞對方的差異，你們將成為彼此生命中最堅實的依靠與避風港。";
+            } else {
+                matchText = "你們的頻率有著深刻的共鳴！許多時候不需要太多言語，就能懂對方的心思。這是一段適合深度對話、互相療癒的關係，能幫助彼此看見內心最真實的渴望。";
+            }
+
+            const today = new Date();
+            const d1 = new Date(today); d1.setDate(today.getDate() + Math.floor(Math.random()*3) + 2);
+            const d2 = new Date(today); d2.setDate(today.getDate() + Math.floor(Math.random()*4) + 6);
+            const formatDate = (d) => `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+
+            const html = `
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h2 style="color: #e74c3c; margin:0;">💞 雙人能量合盤</h2>
+                    <span style="color: #aaa; font-size: 0.9rem;">${mainData.name || '你'} (${sum1}號人) ⨯ ${curSubName} (${sum2}號人)</span>
+                </div>
+                <span class="res-title">💫 能量碰撞解析</span>
+                <div class="res-content" style="background: rgba(231, 76, 60, 0.1); padding: 15px; border-radius: 8px; border-left: 2px solid #e74c3c;">
+                    ${matchText}
+                </div>
+                <span class="res-title">📅 專屬黃道吉日推算</span>
+                <div class="res-content">根據雙方的五行與流日氣場交疊，系統為你們精選了近期最適合行動的好日子：</div>
+                
+                <div style="margin-bottom: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 2px solid #3498db;">
+                    <span style="color:#3498db; font-weight:bold; font-size: 1.05rem;">📍 第一吉日：${formatDate(d1)}</span>
+                    <div style="color:#e0e0e0; font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">
+                        <b>【大吉】：</b>適合進行深度溝通、解開心結、或是共同準備重要考驗。這天的能量能幫助你們保持極度冷靜與專注。
+                    </div>
+                </div>
+                <div style="margin-bottom: 15px; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border-left: 2px solid #2ecc71;">
+                    <span style="color:#2ecc71; font-weight:bold; font-size: 1.05rem;">📍 第二吉日：${formatDate(d2)}</span>
+                    <div style="color:#e0e0e0; font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">
+                        <b>【大吉】：</b>適合出遊、放鬆、或是為彼此準備一個小驚喜。這天的歡樂頻率最高，能為關係注入滿滿的活力。
+                    </div>
+                </div>
+            `;
+            showResult(html);
+        }
+
         function calcLifeNum() {
             const yStr = document.getElementById('in-y').value;
             const mStr = document.getElementById('in-m').value;
@@ -456,12 +550,10 @@
             let sum = (yStr + mStr + dStr).split('').reduce((a, b) => a + parseInt(b), 0);
             while (sum > 9) sum = sum.toString().split('').reduce((a, b) => a + parseInt(b), 0);
             const allDigits = Array.from(new Set((yStr + mStr + dStr).split('').map(Number)));
-            let linesHtml = "";
-            let hasLine = false;
+            let linesHtml = ""; let hasLine = false;
 
             linesDB.forEach(line => {
-                const isPresent = line.nums.every(num => allDigits.includes(num));
-                if(isPresent) {
+                if(line.nums.every(num => allDigits.includes(num))) {
                     hasLine = true;
                     linesHtml += `
                         <div style="margin-bottom: 15px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;">
@@ -492,15 +584,10 @@
             showResult(html);
         }
 
-        // 🧠 MBTI 測驗
         function startMBTITest() {
             mbtiScores = { E:0, I:0, S:0, N:0, T:0, F:0, J:0, P:0, A:0, O:0, H:0, C:0 };
-            mbtiHistory = [];
-            mbtiQuestions = [];
-            currentQIndex = 0;
-
-            const categories = ['EI', 'SN', 'TF', 'JP', 'AO', 'HC'];
-            categories.forEach(cat => {
+            mbtiHistory = []; mbtiQuestions = []; currentQIndex = 0;
+            ['EI', 'SN', 'TF', 'JP', 'AO', 'HC'].forEach(cat => {
                 let shuffled = [...mbtiBank[cat]].sort(() => 0.5 - Math.random());
                 mbtiQuestions.push(...shuffled.slice(0, 3));
             });
@@ -509,18 +596,12 @@
         }
 
         function renderMBTIQuestion() {
-            if (currentQIndex >= mbtiQuestions.length) {
-                finishMBTITest();
-                return;
-            }
+            if (currentQIndex >= mbtiQuestions.length) { finishMBTITest(); return; }
             const qData = mbtiQuestions[currentQIndex];
             const isSwap = Math.random() > 0.5;
             const opt1 = isSwap ? { text: qData.b, val: qData.vB } : { text: qData.a, val: qData.vA };
             const opt2 = isSwap ? { text: qData.a, val: qData.vA } : { text: qData.b, val: qData.vB };
-
-            const backButtonHtml = currentQIndex > 0 
-                ? `<button class="quiz-back-btn" onclick="goBackMBTIQuestion()">🔙 返回上一題</button>` 
-                : ``;
+            const backBtn = currentQIndex > 0 ? `<button class="quiz-back-btn" onclick="goBackMBTIQuestion()">🔙 返回上一題</button>` : ``;
 
             const html = `
                 <div class="quiz-container">
@@ -528,27 +609,14 @@
                     <div class="quiz-question">${qData.q}</div>
                     <button class="quiz-opt" onclick="recordMBTIAnswer('${opt1.val}')">${opt1.text}</button>
                     <button class="quiz-opt" onclick="recordMBTIAnswer('${opt2.val}')">${opt2.text}</button>
-                    ${backButtonHtml}
+                    ${backBtn}
                 </div>
             `;
             showResult(html);
         }
 
-        window.recordMBTIAnswer = function(val) {
-            mbtiHistory.push(val);
-            mbtiScores[val]++;
-            currentQIndex++;
-            renderMBTIQuestion();
-        }
-
-        window.goBackMBTIQuestion = function() {
-            if (currentQIndex > 0) {
-                currentQIndex--;
-                const lastVal = mbtiHistory.pop();
-                mbtiScores[lastVal]--;
-                renderMBTIQuestion();
-            }
-        }
+        window.recordMBTIAnswer = function(val) { mbtiHistory.push(val); mbtiScores[val]++; currentQIndex++; renderMBTIQuestion(); }
+        window.goBackMBTIQuestion = function() { if (currentQIndex > 0) { currentQIndex--; const lastVal = mbtiHistory.pop(); mbtiScores[lastVal]--; renderMBTIQuestion(); } }
 
         function finishMBTITest() {
             const L1 = mbtiScores.E >= mbtiScores.I ? 'E' : 'I';
@@ -557,24 +625,16 @@
             const L4 = mbtiScores.J >= mbtiScores.P ? 'J' : 'P';
             const L5 = mbtiScores.A >= mbtiScores.O ? 'A' : 'O';
             const L6 = mbtiScores.H >= mbtiScores.C ? 'H' : 'C';
+            const final64 = `${L1}${L2}${L3}${L4}-${L5}-${L6}`;
 
-            const base16 = L1 + L2 + L3 + L4;
-            const final64 = `${base16}-${L5}-${L6}`;
-
-            if (curMode === 'main') { db.main.mbti = final64; } 
-            else if (curSubName && curSubName !== "_NEW_") { db.subList[curSubName].mbti = final64; }
+            if (curMode === 'main') { db.main.mbti = final64; } else if (curSubName && curSubName !== "_NEW_") { db.subList[curSubName].mbti = final64; }
             saveToLocal();
 
-            const baseData = mbti16DB[base16] || mbti16DB["INFJ"];
-            const aoText = L5 === 'A' 
-                ? "【決策風格：A型 - 果斷高韌性】做事有方向感、出手穩狠快，擅長掌控局面。面對壓力能保持冷靜，不輕易被外界左右。" 
-                : "【決策風格：O型 - 深思內耗型】典型的「想很多」類型，不輕易下決定。情緒波動大，容易猶豫但也因此能看見常人忽略的盲點。";
-            const hcText = L6 === 'H'
-                ? "【社交氣場：H型 - 共情溫暖系】親和力滿點，懂得換位思考、喜歡照顧他人，是朋友圈的療癒擔當。"
-                : "【社交氣場：C型 - 理智高冷系】自帶距離感，理智冷靜、語氣平穩、看似難親近但其實極有內涵。";
+            const baseData = mbti16DB[`${L1}${L2}${L3}${L4}`] || mbti16DB["INFJ"];
+            const aoText = L5 === 'A' ? "【決策風格：A型 - 果斷高韌性】做事有方向感、出手穩狠快，擅長掌控局面。" : "【決策風格：O型 - 深思內耗型】典型的想很多，情緒波動大但能看見常人忽略的盲點。";
+            const hcText = L6 === 'H' ? "【社交氣場：H型 - 共情溫暖系】親和力滿點，懂得換位思考、喜歡照顧他人。" : "【社交氣場：C型 - 理智高冷系】自帶距離感，理智冷靜、語氣平穩、極有內涵。";
 
             const name = (curMode === 'main') ? (document.getElementById('in-name').value || "你") : (curSubName || "親友");
-
             const html = `
                 <div style="text-align: center; margin-bottom: 20px;">
                     <h2 style="color: #ffeb3b; margin:0;">${name} 的 64 型靈魂報告</h2>
@@ -590,15 +650,16 @@
             showResult(html);
         }
 
-        // 🌌 心理星盤
         function calcAstro() {
             const name = (curMode === 'main') ? (document.getElementById('in-name').value || "你") : (curSubName || "親友");
             const m = parseInt(document.getElementById('in-m').value);
             const d = parseInt(document.getElementById('in-d').value);
             const hh = parseInt(document.getElementById('in-hh').value);
             const mm = parseInt(document.getElementById('in-mm').value);
+            const manualAsc = document.getElementById('in-asc-sign').value;
+            const manualMoon = document.getElementById('in-moon-sign').value;
 
-            if(!m || !d || isNaN(hh) || isNaN(mm)) { alert("心理星盤需要精確時間！"); return; }
+            if(!m || !d) { alert("請至少填寫出生月日以計算太陽星座！"); return; }
 
             let sunIdx = 0;
             if ((m === 3 && d >= 21) || (m === 4 && d <= 19)) sunIdx = 0;
@@ -613,22 +674,26 @@
             else if ((m === 12 && d >= 22) || (m === 1 && d <= 19)) sunIdx = 9;
             else if ((m === 1 && d >= 20) || (m === 2 && d <= 18)) sunIdx = 10;
             else if ((m === 2 && d >= 19) || (m === 3 && d <= 20)) sunIdx = 11;
-
-            let totalMins = (hh * 60 + mm) - (6 * 60);
-            if(totalMins < 0) totalMins += 1440; 
-            
-            let ascDegreeTotal = totalMins / 4;
-            let ascSignOffset = Math.floor(ascDegreeTotal / 30);
-            let ascDegree = Math.floor(ascDegreeTotal % 30);
-            let ascIdx = (sunIdx + ascSignOffset) % 12;
-
             const sunSign = astroDB[sunIdx];
+
+            let ascIdx = 0; let ascMsg = "";
+            if (manualAsc !== "") {
+                ascIdx = parseInt(manualAsc);
+                ascMsg = `<span style="color:#2ecc71;">【已啟用精確校正配置】</span>`;
+            } else {
+                if (isNaN(hh) || isNaN(mm)) { alert("若無手動校正，星盤需要輸入時間進行推算喔！"); return; }
+                let totalMins = (hh * 60 + mm) - (6 * 60);
+                if(totalMins < 0) totalMins += 1440; 
+                ascIdx = (sunIdx + Math.floor((totalMins / 4) / 30)) % 12;
+                ascMsg = `<span style="color:#e74c3c;">【系統約略推算模式】※ 建議利用專屬星盤查詢後手動校正</span>`;
+            }
             const ascSign = astroDB[ascIdx];
 
-            let degreePhase = "";
-            if(ascDegree < 10) degreePhase = "【初始期 0-9°】：靈魂帶著最純粹、原始的能量降生，展現出毫不掩飾的強烈特質。";
-            else if(ascDegree < 20) degreePhase = "【穩固期 10-19°】：靈魂已將能量社會化，能更成熟、游刃有餘地運用這股力量。";
-            else degreePhase = "【轉化期 20-29°】：靈魂正在總結該星座的課題，準備跨越至下一個階段，帶有強烈的精神昇華感。";
+            let moonHtml = "";
+            if (manualMoon !== "") {
+                const moonSign = astroDB[parseInt(manualMoon)];
+                moonHtml = `<span class="res-title">🌙 月亮星座：內在情緒與安全感 (${moonSign.name})</span><div class="res-content">${moonSign.moon}</div>`;
+            }
 
             let houseHtml = "";
             for(let i=0; i<12; i++) {
@@ -636,29 +701,28 @@
                 houseHtml += `
                     <div style="margin-bottom: 15px; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; border-left: 2px solid rgba(197, 160, 89, 0.5);">
                         <span style="color:#ffeb3b; font-weight:bold; font-size: 0.95rem;">第 ${i+1} 宮 (${houseNames[i]}) ⨯ ${astroDB[curSignIdx].name}座</span>
-                        <div style="color:#e0e0e0; font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">
-                            決定了你關於「<b>${houseThemes[i]}</b>」的劇本，會${signTraits[curSignIdx]}
-                        </div>
+                        <div style="color:#e0e0e0; font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">這決定了你關於「<b>${houseThemes[i]}</b>」的劇本，會${signTraits[curSignIdx]}</div>
                     </div>
                 `;
             }
 
             const html = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <h2 style="color: #ffeb3b; margin:0;">${name} 的心理星盤解析</h2>
-                    <span style="color: #aaa; font-size: 0.9rem;">太陽 ${sunSign.name} ． 上升 ${ascSign.name} ${ascDegree}°</span>
+                    <h2 style="color: #ffeb3b; margin:0;">${name} 的心理占星命盤</h2>
+                    <span style="color: #aaa; font-size: 0.9rem;">太陽 ${sunSign.name} ． 上升 ${ascSign.name}</span><br>
+                    <div style="font-size: 0.8rem; margin-top: 5px;">${ascMsg}</div>
                 </div>
-                <span class="res-title">☀️ 太陽星座：核心本我</span>
+                <span class="res-title">☀️ 太陽星座：核心本我 (${sunSign.name})</span>
                 <div class="res-content">${sunSign.ego}</div>
-                <span class="res-title">🎭 上升星座：靈魂面具</span>
-                <div class="res-content">${ascSign.mask}<br><br><span style="color:#c5a059;">${degreePhase}</span></div>
+                ${moonHtml}
+                <span class="res-title">🎭 上升星座：靈魂面具 (${ascSign.name})</span>
+                <div class="res-content">${ascSign.mask}</div>
                 <span class="res-title">🌌 12宮位心理劇本 (等宮制解碼)</span>
                 <div class="res-content" style="margin-top:15px;">${houseHtml}</div>
             `;
             showResult(html);
         }
 
-        // 👑 紫微斗數
         function calcZiwei() {
             const name = (curMode === 'main') ? (document.getElementById('in-name').value || "你") : (curSubName || "親友");
             const y = parseInt(document.getElementById('in-y').value);
@@ -691,7 +755,6 @@
             showResult(html);
         }
 
-        // 🔥 生辰八字
         function calcBazi() {
             const name = (curMode === 'main') ? (document.getElementById('in-name').value || "你") : (curSubName || "親友");
             const y = parseInt(document.getElementById('in-y').value);
@@ -711,10 +774,7 @@
             const branchIdx = ((adjustedY - 4) % 12 + 12) % 12;
             const yearBranch = branchesDB[branchIdx];
 
-            let seasonAdvice = "";
-            let actionAdvice = "";
-            let crystalPrescription = "";
-
+            let seasonAdvice = "", actionAdvice = "", crystalPrescription = "";
             if (m >= 2 && m <= 4) {
                 seasonAdvice = "【春季木旺】：內在充滿蓬勃生機與理想主義。需要『金』的邊界感來修剪過度生長的枝蔓，或藉『火』能量將才華顯化。";
                 actionAdvice = "定期進行物理與心理的『斷捨離』，列出不必要的待辦事項並刪除它們。試著點一顆木質調香氛蠟燭。";
@@ -755,7 +815,6 @@
             showResult(html);
         }
 
-        // ✨ 終極大融合
         function calcFusionAll() {
             const name = (curMode === 'main') ? (document.getElementById('in-name').value || "你") : (curSubName || "親友");
             const mbti = (curMode === 'main') ? (db.main.mbti || "未測驗") : (db.subList[curSubName]?.mbti || "未測驗");
@@ -764,14 +823,13 @@
             const dStr = document.getElementById('in-d').value;
             const hhStr = document.getElementById('in-hh').value;
             const mmStr = document.getElementById('in-mm').value;
+            const manualAsc = document.getElementById('in-asc-sign').value;
+            const manualMoon = document.getElementById('in-moon-sign').value;
             
-            if(!yStr || !mStr || !dStr || !hhStr || !mmStr) { alert("大融合需要填寫完整的年月日時分喔！"); return; }
+            if(!yStr || !mStr || !dStr) { alert("大融合至少需要完整的出生年月日！"); return; }
             
-            const y = parseInt(yStr);
-            const m = parseInt(mStr);
-            const d = parseInt(dStr);
-            const hh = parseInt(hhStr);
-            const mm = parseInt(mmStr);
+            const y = parseInt(yStr); const m = parseInt(mStr); const d = parseInt(dStr);
+            const hh = parseInt(hhStr); const mm = parseInt(mmStr);
 
             // 靈數
             let sum = (yStr + mStr + dStr).split('').reduce((a, b) => a + parseInt(b), 0);
@@ -799,15 +857,24 @@
             else if ((m === 1 && d >= 20) || (m === 2 && d <= 18)) sunIdx = 10;
             else if ((m === 2 && d >= 19) || (m === 3 && d <= 20)) sunIdx = 11;
             
-            let totalMins = (hh * 60 + mm) - (6 * 60);
-            if(totalMins < 0) totalMins += 1440; 
-            let ascIdx = (sunIdx + Math.floor((totalMins / 4) / 30)) % 12;
+            let ascSignTxt = "未知上升";
+            if (manualAsc !== "") {
+                ascSignTxt = astroDB[parseInt(manualAsc)].name;
+            } else if (!isNaN(hh) && !isNaN(mm)) {
+                let totalMins = (hh * 60 + mm) - (6 * 60);
+                if(totalMins < 0) totalMins += 1440; 
+                ascSignTxt = astroDB[(sunIdx + Math.floor((totalMins / 4) / 30)) % 12].name;
+            }
+            
             const sunSign = astroDB[sunIdx].name;
-            const ascSign = astroDB[ascIdx].name;
+            const moonSignTxt = manualMoon !== "" ? `、月亮${astroDB[parseInt(manualMoon)].name}` : "";
 
             // 紫微
-            const hash = (y * 31 + m * 17 + d * 7 + hh * 3) % 14;
-            const mainStar = ziweiStarsDB[hash].name;
+            let mainStar = "未知主星";
+            if (!isNaN(hh)) {
+                const hash = (y * 31 + m * 17 + d * 7 + hh * 3) % 14;
+                mainStar = ziweiStarsDB[hash].name;
+            }
 
             const html = `
                 <h3 style="color:#ffeb3b; text-align:center;">✨ 琉璃大融合 ． 靈魂全景剖析</h3>
@@ -819,8 +886,8 @@
                 <span class="res-title">2️⃣ 心智操作系統 (MBTI: ${mbti})</span>
                 <div class="res-content">如果先天命格是硬體，那麼 <b>${mbti}</b> 便是你的軟體。它細緻地決定了你如何處理情感、吸收資訊，以及與世界建立安全的邊界。</div>
 
-                <span class="res-title">3️⃣ 星象與紫微流年 (太陽${sunSign}/上升${ascSign} ⨯ ${mainStar})</span>
-                <div class="res-content">西洋星盤中你以<b>${sunSign}</b>為核心、戴著<b>${ascSign}</b>的面具面對世界；而紫微斗數中，你是<b>${mainStar}</b>坐命，這精準定錨了你的人生舞台與需要跨越的業力盲點。</div>
+                <span class="res-title">3️⃣ 星象與紫微流年 (太陽${sunSign}${moonSignTxt}/上升${ascSignTxt} ⨯ ${mainStar})</span>
+                <div class="res-content">西洋星盤中你以<b>${sunSign}</b>為核心、戴著<b>${ascSignTxt}</b>的面具面對世界；而紫微斗數中，你是<b>${mainStar}</b>坐命，這精準定錨了你的人生舞台與需要跨越的業力盲點。</div>
 
                 <span class="res-title">🔮 琉璃終極指引</span>
                 <div class="res-content">你絕非單一的標籤可以被定義。當你的<b>命理天賦</b>、<b>心智邏輯</b>與<b>五行能量</b>交織，意味著你不論面對何種困境，都擁有一套獨一無二的破解機制。請相信直覺，勇敢走上專屬的花路吧！</div>
@@ -829,100 +896,71 @@
         }
 
         // ==========================================
-        // 頁面載入與事件綁定 (採用最穩定的 DOMContentLoaded)
+        // 🚀 啟動：頁面載入與事件綁定
         // ==========================================
         document.addEventListener("DOMContentLoaded", function() {
-            // 塔羅牌按鈕
             document.getElementById('btn-tarot').addEventListener('click', drawTarot);
+            document.getElementById('btn-match').addEventListener('click', calcMatch);
 
-            // 隨機彩虹卡
             const randIdx = Math.floor(Math.random() * rainbowQuotes.length);
             const quoteData = rainbowQuotes[randIdx];
             document.getElementById('rainbow-quote').innerText = `「${quoteData.text}」`;
             document.getElementById('rainbow-card-bg').style.background = `linear-gradient(135deg, #1f2833 10%, ${quoteData.color}99)`;
 
-            // 本地儲存讀取
-            const saved = localStorage.getItem('prism_v_final');
+            const saved = localStorage.getItem('prism_v_final_master');
             if(saved) {
                 db = JSON.parse(saved);
                 if(!db.main) db.main = {};
                 if(!db.subList) db.subList = {};
             }
 
-            // 使用者模式切換
-            document.getElementById('mode-main').addEventListener('click', () => {
-                curMode = 'main';
-                document.getElementById('mode-main').classList.add('active');
-                document.getElementById('mode-sub').classList.remove('active');
-                document.getElementById('result-box').style.display = 'none';
+            document.getElementById('mode-main').addEventListener('click', () => { curMode = 'main'; document.getElementById('mode-main').classList.add('active'); document.getElementById('mode-sub').classList.remove('active'); document.getElementById('result-box').style.display = 'none'; updateUI(); });
+            document.getElementById('mode-sub').addEventListener('click', () => { curMode = 'sub'; document.getElementById('mode-sub').classList.add('active'); document.getElementById('mode-main').classList.remove('active'); document.getElementById('result-box').style.display = 'none'; curSubName = ''; updateUI(); });
+            document.getElementById('sub-user-select').addEventListener('change', (e) => { const val = e.target.value; curSubName = (val === "_NEW_") ? '' : val; document.getElementById('result-box').style.display = 'none'; updateUI(); });
+
+            // ✨ 新增親友的儲存按鈕綁定 ✨
+            document.getElementById('btn-add-sub').addEventListener('click', () => {
+                const val = document.getElementById('in-name').value.trim();
+                if(!val) { alert("請先輸入親友的名字喔！"); return; }
+                if(db.subList[val]) { alert("這位親友已經在清單中囉！"); return; }
+                
+                db.subList[val] = { name: val, year:"", month:"", day:"", hour:"", minute:"", ascSign:"", moonSign:"", mbti:"" };
+                curSubName = val;
+                saveToLocal();
                 updateUI();
             });
 
-            document.getElementById('mode-sub').addEventListener('click', () => {
-                curMode = 'sub';
-                document.getElementById('mode-sub').classList.add('active');
-                document.getElementById('mode-main').classList.remove('active');
-                document.getElementById('result-box').style.display = 'none';
-                curSubName = ''; 
-                updateUI();
-            });
-
-            // 親友選單
-            document.getElementById('sub-user-select').addEventListener('change', (e) => {
-                const val = e.target.value;
-                if(val === "_NEW_") { curSubName = ''; } else { curSubName = val; }
-                document.getElementById('result-box').style.display = 'none';
-                updateUI();
-            });
-
-            // 名稱輸入監聽
-            document.getElementById('in-name').addEventListener('input', (e) => {
-                const val = e.target.value.trim();
-                if (curMode === 'main') { db.main.name = val; saveToLocal(); }
-            });
-            document.getElementById('in-name').addEventListener('change', (e) => {
-                const val = e.target.value.trim();
-                if (curMode === 'sub' && val !== "") {
-                    curSubName = val;
-                    if(!db.subList[val]) db.subList[val] = { name: val, year:"", month:"", day:"", hour:"", minute:"" };
-                    saveToLocal();
-                    updateUI(); 
-                }
-            });
-
-            // 日期輸入監聽
-            const inputs = ['in-y', 'in-m', 'in-d', 'in-hh', 'in-mm'];
-            inputs.forEach((id, idx) => {
+            const inputIds = ['in-name', 'in-y', 'in-m', 'in-d', 'in-hh', 'in-mm', 'in-asc-sign', 'in-moon-sign'];
+            inputIds.forEach(id => {
                 document.getElementById(id).addEventListener('input', (e) => {
+                    const fieldMap = {'in-name':'name', 'in-y':'year', 'in-m':'month', 'in-d':'day', 'in-hh':'hour', 'in-mm':'minute', 'in-asc-sign':'ascSign', 'in-moon-sign':'moonSign'};
                     const val = e.target.value;
-                    if(val.length >= e.target.maxLength && idx < inputs.length-1) {
-                        document.getElementById(inputs[idx+1]).focus();
+                    const field = fieldMap[id];
+                    if (curMode === 'main') { 
+                        db.main[field] = val; 
+                        saveToLocal(); 
+                    } else if (curMode === 'sub' && curSubName && curSubName !== "_NEW_") { 
+                        db.subList[curSubName][field] = val; 
+                        saveToLocal(); 
                     }
-                    if (curMode === 'main') {
-                        const keys = ['year', 'month', 'day', 'hour', 'minute'];
-                        db.main[keys[idx]] = val;
-                        saveToLocal();
-                    } else if (curMode === 'sub' && curSubName && curSubName !== "_NEW_") {
-                        const keys = ['year', 'month', 'day', 'hour', 'minute'];
-                        db.subList[curSubName][keys[idx]] = val;
-                        saveToLocal();
+                    
+                    if (id !== 'in-name' && id !== 'in-asc-sign' && id !== 'in-moon-sign' && val.length >= e.target.maxLength) {
+                        const idx = inputIds.indexOf(id);
+                        if(idx < inputIds.length - 1 && document.getElementById(inputIds[idx+1]).tagName === "INPUT") {
+                            document.getElementById(inputIds[idx+1]).focus();
+                        }
                     }
                     checkReady();
                 });
             });
 
-            // 刪除親友
             document.getElementById('btn-del').addEventListener('click', () => {
                 if(curSubName && confirm(`確定刪除 ${curSubName} 的專屬資料嗎？`)) {
-                    delete db.subList[curSubName];
-                    curSubName = ''; 
-                    saveToLocal(); 
-                    updateUI();
-                    document.getElementById('result-box').style.display = 'none';
+                    delete db.subList[curSubName]; curSubName = ''; saveToLocal(); updateUI(); document.getElementById('result-box').style.display = 'none';
                 }
             });
 
-            // 全模組按鈕解封綁定 (真正的大解禁！)
+            // 👑 全模組解禁綁定 👑
             document.getElementById('btn-num').addEventListener('click', calcLifeNum);
             document.getElementById('btn-mbti').addEventListener('click', startMBTITest);
             document.getElementById('btn-astro').addEventListener('click', calcAstro);
